@@ -7,20 +7,20 @@ import streamlit as st
 def stack_minio(request):
     st.write("Inicio da Function")
 
-    st.write("Definindo termo para busca da Function")
+    #st.write("Definindo termo para busca da Function")
     termo = 'petrobras'
-    st.write("Definindo termo " + termo + " para busca da Function")
-    st.write("Definindo lang e region")
-    googlenews = GoogleNews(lang='pt', region='BR')
-    st.write("Definindo periodo de 23 horas para busca")
-    googlenews = GoogleNews(period='12h')
-    st.write("Fazendo chamada na API do Google News")
+    #st.write("Definindo termo " + termo + " para busca da Function")
+    #st.write("Definindo lang e region")
+    googlenews = GoogleNews(lang='pt', region='BR', period='12h')
+    #st.write("Definindo periodo de 23 horas para busca")
+    #googlenews = GoogleNews(period='12h')
+    #st.write("Fazendo chamada na API do Google News")
     googlenews.search(termo)
-    st.write("Termino da chamada na API do Google News")
+    #st.write("Termino da chamada na API do Google News")
     result = googlenews.result()
-    st.write("Fazendo o clear na API")
+    #st.write("Fazendo o clear na API")
     googlenews.clear()
-    st.write("Apresentando resultado")
+    #st.write("Apresentando resultado")
     st.write(result)
     st.write("Termino da Function")
 
@@ -28,4 +28,7 @@ def stack_minio(request):
 buscar = st.button('Buscar noticias')
 
 if buscar:
-    stack_minio(None)
+    for i in range(1,200)
+        st.write(i)
+        stack_minio(None)
+        sleep(2)
