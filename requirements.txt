@@ -16,3 +16,4 @@ google-cloud-firestore
 #click==7.1.2
 protobuf~=3.19.0
 Googlenews
+google-cloud-bigquery
