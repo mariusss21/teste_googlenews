@@ -5,9 +5,15 @@ from datetime import datetime
 import streamlit as st
 from time import sleep
 from google.cloud import bigquery
+from google.oauth2 import service_account
+
+# Create API client.
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
 
 def query_stackoverflow():
-    client = bigquery.Client()
+    client = bigquery.Client(credentials=credentials)
     query_job = client.query(
         """
         SELECT *
