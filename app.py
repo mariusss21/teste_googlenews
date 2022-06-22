@@ -28,7 +28,7 @@ def stack_minio(request):
 buscar = st.button('Buscar noticias')
 
 if buscar:
-    for i in range(1,200)
+    for i in list(range(1,200)):
         st.write(i)
         stack_minio(None)
         sleep(2)
