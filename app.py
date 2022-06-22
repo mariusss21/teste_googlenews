@@ -7,12 +7,13 @@ from time import sleep
 from google.cloud import bigquery
 from google.oauth2 import service_account
 
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+client = bigquery.Client(credentials=credentials)
 
 def query_stackoverflow():
-    credentials = service_account.Credentials.from_service_account_info(
-        st.secrets["gcp_service_account"]
-    )
-    client = bigquery.Client(credentials=credentials)
+
     query_job = client.query("SELECT * FROM 'marioloc-1491911271221.teste1.tabela1' LIMIT 10")
 
     results = query_job.result()  # Waits for job to complete.
