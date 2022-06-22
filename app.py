@@ -13,12 +13,7 @@ def query_stackoverflow():
         st.secrets["gcp_service_account"]
     )
     client = bigquery.Client(credentials=credentials)
-    query_job = client.query(
-        """
-        SELECT *
-        FROM `marioloc-1491911271221.teste1.tabela1`
-        LIMIT 10"""
-    )
+    query_job = client.query("SELECT * FROM 'marioloc-1491911271221.teste1.tabela1' LIMIT 10")
 
     results = query_job.result()  # Waits for job to complete.
 
