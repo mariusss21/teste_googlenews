@@ -3,6 +3,7 @@ import pandas as pd
 from GoogleNews import GoogleNews
 from datetime import datetime
 import streamlit as st
+from time import sleep
 
 def stack_minio(request):
     st.write("Inicio da Function")
