@@ -4,7 +4,23 @@ from GoogleNews import GoogleNews
 from datetime import datetime
 import streamlit as st
 from time import sleep
+from google.cloud import bigquery
 
+def query_stackoverflow():
+    client = bigquery.Client()
+    query_job = client.query(
+        """
+        SELECT *
+        FROM `marioloc-1491911271221.teste1.tabela1`
+        LIMIT 10"""
+    )
+
+    results = query_job.result()  # Waits for job to complete.
+
+    for row in results:
+        print("{} : {} views".format(row.url, row.view_count))
+        
+        
 def stack_minio(request):
     st.write("Inicio da Function")
 
@@ -25,6 +41,7 @@ def stack_minio(request):
     st.write(result)
     st.write("Termino da Function")
 
+    
 
 buscar = st.button('Buscar noticias')
 
@@ -33,3 +50,12 @@ if buscar:
         st.write(i)
         stack_minio(None)
         sleep(2)
+        
+biquery = st.button('bigquery test')
+
+if bigquery:
+    query_stackoverflow()
+
+
+
+    
