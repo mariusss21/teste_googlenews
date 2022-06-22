@@ -19,7 +19,7 @@ def query_stackoverflow():
     results = query_job.result()  # Waits for job to complete.
 
     for row in results:
-        print("{} : {} views".format(row.url, row.view_count))
+        st.write("{} : {} views".format(row.url, row.view_count))
         
         
 def stack_minio(request):
