@@ -7,12 +7,11 @@ from time import sleep
 from google.cloud import bigquery
 from google.oauth2 import service_account
 
-# Create API client.
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"]
-)
 
 def query_stackoverflow():
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"]
+    )
     client = bigquery.Client(credentials=credentials)
     query_job = client.query(
         """
@@ -57,9 +56,9 @@ if buscar:
         stack_minio(None)
         sleep(2)
         
-biquery = st.button('bigquery test')
+select_bq = st.button('bigquery test')
 
-if bigquery:
+if select_bq:
     query_stackoverflow()
 
 
