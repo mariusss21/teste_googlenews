@@ -14,7 +14,7 @@ client = bigquery.Client(credentials=credentials)
 
 def query_stackoverflow():
 
-    query_job = client.query("SELECT * FROM 'marioloc-1491911271221.teste1.tabela1' LIMIT 10")
+    query_job = client.query("SELECT * FROM ´marioloc-1491911271221.teste1.tabela1´ LIMIT 10")
 
     results = query_job.result()  # Waits for job to complete.
 
