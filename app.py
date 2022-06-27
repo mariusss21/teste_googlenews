@@ -42,7 +42,7 @@ def stack_minio(request):
     st.write(result)
     st.write("Termino da Function")
 
-    st.write('testes')
+st.write('testes')
     
 
 buscar = st.button('Buscar noticias')
