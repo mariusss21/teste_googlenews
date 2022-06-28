@@ -8,6 +8,19 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.graph_objects as go
 
+st.set_page_config(
+    page_title="Análise ações Petrobrás",
+	layout="wide",
+    #initial_sidebar_state="collapsed",
+)
+
+m = st.markdown("""
+<style>
+div.stButton > button:first-child{
+    width: 100%;
+
+}
+</style>""", unsafe_allow_html=True)
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcp_service_account"]
 )
@@ -36,7 +49,7 @@ def stack_minio(request):
     #st.write("Fazendo chamada na API do Google News")
     googlenews.search(termo)
     #st.write("Termino da chamada na API do Google News")
-    result = googlenews.result()
+    result = googlenews.result().to_dataframe()
     #st.write("Fazendo o clear na API")
     googlenews.clear()
     #st.write("Apresentando resultado")
@@ -44,9 +57,11 @@ def stack_minio(request):
     st.write("Termino da Function")
     
 
-# buscar = st.button('Buscar noticias')
+buscar = st.button('Buscar noticias')
 
-# if buscar:
+if buscar:
+    stack_minio(None)
+
 #     for i in list(range(1,200)):
 #         st.write(i)
 #         stack_minio(None)
@@ -59,16 +74,22 @@ select_bq = st.button('bigquery test')
 if __name__ == '__main__':
 
     st.subheader('Dados de ações da petrobrás')
-    if select_bq:
+    col1, col2 = st.columns([8, 2])
 
-        df = query_stackoverflow()
-        st.write(df)
-        fig = go.Figure(data=[go.Candlestick(x=df['Date'],
-                    open=df['Open'],
-                    high=df['High'],
-                    low=df['Low'],
-                    close=df['Close'])])
-        st.write(fig)
+    st.sidebar.subheader('Stack Labs Finance')
+
+
+    with col1:
+        if select_bq:
+
+            df = query_stackoverflow()
+            st.write(df)
+            fig = go.Figure(data=[go.Candlestick(x=df['Date'],
+                        open=df['Open'],
+                        high=df['High'],
+                        low=df['Low'],
+                        close=df['Close'])])
+            st.write(fig)
 
 
     
