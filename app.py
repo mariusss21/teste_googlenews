@@ -12,14 +12,13 @@ credentials = service_account.Credentials.from_service_account_info(
 )
 client = bigquery.Client(credentials=credentials)
 
-def query_stackoverflow():
-
+def query_stackoverflow() -> pd.DataFrame:
     query_job = client.query("SELECT * FROM `marioloc-1491911271221.teste1.tabela1` LIMIT 10")
-
     results = query_job.result()  # Waits for job to complete.
-
-    for row in results:
-        st.write(row)
+    df = results.to_dataframe()
+    return df
+    # for row in results:
+    #     st.write(row)
         
         
 def stack_minio(request):
@@ -41,22 +40,27 @@ def stack_minio(request):
     #st.write("Apresentando resultado")
     st.write(result)
     st.write("Termino da Function")
-
-st.write('testes')
     
 
-buscar = st.button('Buscar noticias')
+# buscar = st.button('Buscar noticias')
 
-if buscar:
-    for i in list(range(1,200)):
-        st.write(i)
-        stack_minio(None)
-        sleep(2)
+# if buscar:
+#     for i in list(range(1,200)):
+#         st.write(i)
+#         stack_minio(None)
+#         sleep(2)
         
 select_bq = st.button('bigquery test')
 
-if select_bq:
-    query_stackoverflow()
+
+
+if __name__ == '__main__':
+
+    st.subheader('Dados de ações da petrobrás')
+    if select_bq:
+
+        df = query_stackoverflow()
+        st.write(df)
 
 
 
