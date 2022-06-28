@@ -57,17 +57,7 @@ def stack_minio(request):
     st.write("Termino da Function")
     
 
-buscar = st.button('Buscar noticias')
 
-if buscar:
-    stack_minio(None)
-
-#     for i in list(range(1,200)):
-#         st.write(i)
-#         stack_minio(None)
-#         sleep(2)
-        
-select_bq = st.button('bigquery test')
 
 
 
@@ -77,11 +67,14 @@ if __name__ == '__main__':
     col1, col2 = st.columns([8, 2])
 
     st.sidebar.subheader('Stack Labs Finance')
+    buscar = st.sidebar.button('Buscar noticias')
+    select_bq = st.sidebar.button('bigquery test')
 
-
+    if buscar:
+        stack_minio(None)
+            
     with col1:
         if select_bq:
-
             df = query_stackoverflow()
             st.write(df)
             fig = go.Figure(data=[go.Candlestick(x=df['Date'],
