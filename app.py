@@ -6,12 +6,14 @@ import streamlit as st
 from time import sleep
 from google.cloud import bigquery
 from google.oauth2 import service_account
+import plotly.graph_objects as go
 
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcp_service_account"]
 )
 client = bigquery.Client(credentials=credentials)
 
+@st.cache(show_spinner=True, ttl=3600)
 def query_stackoverflow() -> pd.DataFrame:
     query_job = client.query("SELECT * FROM `marioloc-1491911271221.teste1.tabela1` LIMIT 10")
     df = query_job.result().to_dataframe()  # Waits for job to complete.
@@ -61,7 +63,12 @@ if __name__ == '__main__':
 
         df = query_stackoverflow()
         st.write(df)
-
+        fig = go.Figure(data=[go.Candlestick(x=df['Date'],
+                    open=df['Open'],
+                    high=df['High'],
+                    low=df['Low'],
+                    close=df['Close'])])
+        st.write(fig)
 
 
     
