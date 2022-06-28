@@ -17,3 +17,5 @@ google-cloud-firestore
 protobuf~=3.19.0
 Googlenews
 google-cloud-bigquery
+yfinance
+pandas-gbq
