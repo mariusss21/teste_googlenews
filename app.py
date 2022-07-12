@@ -7,6 +7,7 @@ from time import sleep
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.graph_objects as go
+from PIL import image
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
