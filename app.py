@@ -39,11 +39,11 @@ def widget_news():
       "proName": "BMFBOVESPA:IBOV"
     },
     {
-      "description": "Petrobrás",
+      "description": "PETR4",
       "proName": "BMFBOVESPA:PETR4"
     },
     {
-      "description": "Petrobrás 3",
+      "description": "PETR3",
       "proName": "BMFBOVESPA:PETR3"
     },
     {
@@ -58,53 +58,14 @@ def widget_news():
   "colorTheme": "dark",
   "isTransparent": false,
   "showSymbolLogo": true,
-  "locale": "br"
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
-""")
-    components.html("""
-    <html><body>
-<!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright">
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-  {
-  "symbols": [
-    {
-      "description": "Petro4",
-      "proName": "BMFBOVESPA:PETR4"
-    },
-    {
-      "description": "Petro3",
-      "proName": "BMFBOVESPA:PETR3"
-    },
-    {
-      "description": "Euro",
-      "proName": "FX_IDC:EURBRL"
-    },
-    {
-      "description": "IBOV",
-      "proName": "BMFBOVESPA:IBOV11"
-    },
-    {
-      "description": "Dolar",
-      "proName": "FX_IDC:USDBRL"
-    }
-  ],
-  "showSymbolLogo": true,
-  "colorTheme": "dark",
   "isTransparent": true,
-  "displayMode": "adaptive",
   "locale": "br"
 }
   </script>
 </div>
 <!-- TradingView Widget END -->
-</body></html>
 """)
+    
 
 @st.cache(show_spinner=True, ttl=3600)
 def raw_petro() -> pd.DataFrame:
