@@ -57,8 +57,10 @@ def news_teste(df):
                 </style>
                 """
 
-    st.markdown(result_str, unsafe_allow_html=True)
-    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+    components.iframe(result_str)
+    components.iframe(hide_streamlit_style)
+    # st.markdown(result_str, unsafe_allow_html=True)
+    # st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 
