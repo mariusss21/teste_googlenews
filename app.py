@@ -43,7 +43,7 @@ def final_df() -> pd.DataFrame:
     return df
 
 
-def petro_graph(df):
+def petro_graph(df_raw_petro_date):
     fig = go.Figure(data=[go.Candlestick(x=df_raw_petro_date['Date'],
                 open=df_raw_petro_date['Open'],
                 high=df_raw_petro_date['High'],
