@@ -59,7 +59,6 @@ def petro_chart(df_raw_petro_date):
         font=dict(size=15),
         xaxis_rangeslider_visible=False)
 
-    #fig.update_traces(textposition='inside', textfont_color='rgb(255,255,255)', textfont_size=20)
     st.plotly_chart(fig, use_container_width=True)
 
 
@@ -70,11 +69,6 @@ def latest_news():
 def news_sentiment():
     pass
 
-
-def petrobras_day():
-    date_ = date.today()
-    df = yf.download('EGIE3.SA', start=date_, interval = "1m")
-    st.write(df)
 
 def dashboard(data_inicial, data_final):
     #coletando os dados
@@ -94,15 +88,23 @@ def dashboard(data_inicial, data_final):
     st.write(df_final_date)
     st.write(df_raw_gnews_date)
 
+    tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
+
     with col1:
         st.subheader('Cotação histórica')
-        petro_chart(df_raw_petro_date)
+
+        if tipo_cotacao == 'Histórica':
+            petro_chart(df_raw_petro_date)
+        if tipo_cotacao == 'Dia':
+            date_ = date.today()
+            df = yf.download('EGIE3.SA', start=date_, interval = "1m")
+            petro_chart(df)
+        
         latest_news()
         news_sentiment()
 
     with col2:
-        st.subheader('Cotação dia')
-        petrobras_day()
+        pass
 
 
 
