@@ -80,8 +80,9 @@ def news_sentiment(df_final_date):
 
     bars = []
     for label, label_df in df_final_date.groupby('label'):
-        bars.append(go.Bar(x=df_final_date.Date,
-                        y=df_final_date.score,
+        df_aux = df_final_date.loc[df_final_date['label'] == label]
+        bars.append(go.Bar(x=df_aux.Date,
+                        y=df_aux.score,
                         name=label,
                         marker={'color': colors[label]}))
     st.write(bars)
