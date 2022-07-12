@@ -76,7 +76,7 @@ def news_sentiment(df_final_date):
             'baixa': 'red'}
 
     # Build dataframe
-    df_final_date['label'] = df_final_date['score'].apply(lambda x: labels[0] if x > 0 else labels[1])
+    df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
 
     bars = []
     fig = go.Figure()
@@ -87,7 +87,7 @@ def news_sentiment(df_final_date):
     fig = go.Figure(data=[go.Bar(x=df_final_date.Date,
                         y=df_final_date.score,
                         #name=label,
-                        marker={'color': colors[label]})])
+                        marker={'color': label})])
     
     fig.update_layout(
 		height=300,
