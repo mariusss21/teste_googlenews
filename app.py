@@ -72,7 +72,7 @@ def news_sentiment():
 
 def petrobras_day():
     date_ = date.today()
-    df = yf.download('EGIE3.SA', start="2020-09-28", interval = "1m")
+    df = yf.download('EGIE3.SA', start=date_, interval = "1m")
     st.write(df)
 
 def dashboard(data_inicial, data_final):
