@@ -76,12 +76,12 @@ def news_sentiment(df_final_date):
             'baixa': 'red'}
 
     # Build dataframe
-    df_final_date['label'] = df_final_date['Score'].apply(lambda x: labels[0] if x > 0 else labels[1])
+    df_final_date['label'] = df_final_date['score'].apply(lambda x: labels[0] if x > 0 else labels[1])
 
     bars = []
     for label, label_df in df_final_date.groupby('label'):
         bars.append(go.Bar(x=df_final_date.Date,
-                        y=df_final_date.Score,
+                        y=df_final_date.score,
                         name=label,
                         marker={'color': colors[label]}))
     st.write(bars)
