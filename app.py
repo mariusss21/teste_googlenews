@@ -39,6 +39,7 @@ def raw_gnews() -> pd.DataFrame:
 @st.cache(show_spinner=True, ttl=3600)
 def final_df() -> pd.DataFrame:
     df = pd.read_csv('df_final.csv', sep='|')
+    df.Date = pd.to_datetime(df.Date)
     return df
 
 
