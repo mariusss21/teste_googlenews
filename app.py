@@ -7,7 +7,6 @@ from time import sleep
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.graph_objects as go
-from PIL import Image
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
@@ -57,9 +56,8 @@ def dashboard(data_inicial, data_final):
 
 if __name__ == '__main__':
 
-    logo = Image.open('logo_stack.png')
-    st.title.image(logo, use_column_width=True)
-    st.title.sidebar('Equipe MinIO')
+    st.sidebar.image("logo_stack.png", use_column_width=True)
+    st.sidebar.title('Equipe MinIO')
     col1, col2 = st.columns([8, 2])
 
     st.sidebar.subheader('Menu')
