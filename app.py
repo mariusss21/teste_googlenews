@@ -140,8 +140,8 @@ def dashboard(data_inicial, data_final):
     st.title('Dashboard Petrobrás')
 
     col1, col2 = st.columns([8, 2])
-    st.write(df_final_date)
-    st.write(df_raw_gnews_date)
+    #st.write(df_final_date)
+    #st.write(df_raw_gnews_date)
 
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
 
