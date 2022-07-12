@@ -28,30 +28,41 @@ div.block-container{
 
 
 def widget_news():
-    components.html("""
-<html><body>
+    components.html("""[6:56 PM, 7/12/2022] Anderson Miranda Stacklabs: <html style='margin: 0px; paddi'><body>
 <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://br.tradingview.com/markets/" rel="noopener" target="_blank">
+  <div class="tradingview-widget-copyright"><a href="https://br.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text">Mercados</span></a> por TradingView</div>
   <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
   {
   "symbols": [
     {
-      "proName": "FOREXCOM:SPXUSD",
-      "title": "S&P 500"
+      "description": "Bovespa",
+      "proName": "BMFBOVESPA:IBOV"
     },
     {
-      "proName": "FOREXCOM:NSXUSD",
-      "title": "US 100"
+      "description": "Dolar",
+      "proName": "BMFBOVESPA:DOL1!"
     },
     {
-      "proName": "BITSTAMP:BTCUSD",
-      "title": "Bitcoin"
+      "description": "BTC",
+      "proName": "BINANCE:BTCUSDT"
     },
     {
-      "proName": "BITSTAMP:ETHUSD",
-      "title": "Ethereum"
+      "description": "Euro",
+      "proName": "BMFBOVESPA:EUR1!"
+    },
+    {
+      "description": "PETR4",
+      "proName": "BMFBOVESPA:PETR4"
+    },
+    {
+      "description": "PETR3",
+      "proName": "BMFBOVESPA:PETR3"
+    },
+    {
+      "description": "IBOV11",
+      "proName": "BMFBOVESPA:IBOV11"
     }
   ],
   "showSymbolLogo": true,
@@ -59,7 +70,7 @@ def widget_news():
   "isTransparent": false,
   "displayMode": "adaptive",
   "locale": "br"
-}
+[6:56 PM, 7/12/2022] Anderson Miranda Stacklabs: }
   </script>
 </div>
 <!-- TradingView Widget END -->
