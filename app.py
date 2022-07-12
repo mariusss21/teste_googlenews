@@ -50,7 +50,14 @@ def petro_graph(df_raw_petro_date):
                 low=df_raw_petro_date['Low'],
                 close=df_raw_petro_date['Close'])])
 
-    st.write(fig)
+    fig.update_layout(
+    	#width=440, 
+		#height=205,
+		margin=dict(b=5,	t=0,	l=0,	r=0),
+        font=dict(size=15))
+
+    fig.update_traces(textposition='inside', textfont_color='rgb(255,255,255)', textfont_size=20)
+    st.plotly_chart(fig, use_container_width=True)
 
 def dashboard(data_inicial, data_final):
     #coletando os dados
