@@ -30,10 +30,10 @@ div.block-container{
 def news_teste(df):
     result_str = '<html><table style="border: none;"><tr style="border: none;"><td style="border: none; height: 10px;"></td></tr>'
     for n, i in df.head(5).iterrows(): #iterating through the search results
-        href = i["url"]
-        description = i["description"]
+        href = i["title"]
+        description = i["desc"]
         url_txt = i["title"]
-        src_time = i["src_time"]
+        src_time = i["date"]
         
         result_str += f'<a href="{href}" target="_blank" style="background-color: whitesmoke; display: block; height:100%; text-decoration: none; color: black; line-height: 1.2;">'+\
         f'<tr style="align:justify; border-left: 5px solid transparent; border-top: 5px solid transparent; border-bottom: 5px solid transparent; font-weight: bold; font-size: 18px; background-color: whitesmoke;">{url_txt}</tr></a>'+\
