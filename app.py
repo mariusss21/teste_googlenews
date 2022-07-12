@@ -24,12 +24,6 @@ div.stButton > button:first-child{
 div.block-container{
     padding-top: 1rem;
 }
-
-#MainMenu {visibility: hidden;}
-.css-hi6a2p {padding-top: 0rem;}
-.css-1moshnm {visibility: hidden;}
-.css-kywgdc {visibility: hidden;}
-footer {visibility: hidden;}
 </style>""", unsafe_allow_html=True)
 
 
@@ -63,8 +57,8 @@ def news_teste(df):
                 </style>
                 """
 
-    components.html(result_str)
-    components.html(hide_streamlit_style)
+    # components.html(result_str)
+    # components.html(hide_streamlit_style)
     # st.markdown(result_str, unsafe_allow_html=True)
     # st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
