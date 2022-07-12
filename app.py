@@ -45,22 +45,21 @@ def final_df() -> pd.DataFrame:
 
 def dashboard(data_inicial, data_final):
     df_raw_petro = raw_petro()
-    #df_raw_petro = df_how
-    st.write(df_raw_petro)
-
-    df = df_raw_petro
-    st.write(df)
-    fig = go.Figure(data=[go.Candlestick(x=df['Date'],
-                open=df['Open'],
-                high=df['High'],
-                low=df['Low'],
-                close=df['Close'])])
+    df_raw_petro_date = df_raw_petro.loc[(df_raw_petro['Date'] >= data_inicial) & (df_raw_petro['Date'] <= data_final)]
+    st.write(df_raw_petro_date)
+    fig = go.Figure(data=[go.Candlestick(x=df_raw_petro_date['Date'],
+                open=df_raw_petro_date['Open'],
+                high=df_raw_petro_date['High'],
+                low=df_raw_petro_date['Low'],
+                close=df_raw_petro_date['Close'])])
     st.write(fig)
 
     df_raw_gnews = raw_gnews()
+    df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
     st.write(df_raw_gnews)
 
     df_final = final_df()
+    df_final_date = df_final.loc[(df_final['Date'] >= data_inicial) & (df_final['Date'] <= data_final)]
     st.write(df_final)
 
 
@@ -73,9 +72,10 @@ if __name__ == '__main__':
 
     paginas = ['Análise ações Petrobrás', 'Notícias', 'Equipe MinIO']
     pagina = st.sidebar.radio('Menu', paginas)
-    data_inicial = st.sidebar.date_input('Data inicial', datetime.now() - timedelta(days=1))
-    data_final = st.sidebar.date_input('Data final', datetime.now() - timedelta(days=30))
 
+    data_inicial = st.sidebar.date_input('Data inicial', datetime.now() - timedelta(days=30))
+    data_final = st.sidebar.date_input('Data final', datetime.now() - timedelta(days=1))
+    
     if pagina == 'Análise ações Petrobrás':
         dashboard(data_inicial, data_final)
             
