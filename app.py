@@ -98,6 +98,7 @@ def dashboard(data_inicial, data_final):
         if tipo_cotacao == 'Dia':
             date_ = date.today()
             df = yf.download('EGIE3.SA', start=date_, interval = "1m")
+            st.write(df)
             petro_chart(df)
         
         latest_news()
