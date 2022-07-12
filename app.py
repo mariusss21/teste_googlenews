@@ -46,7 +46,7 @@ def final_df() -> pd.DataFrame:
     return df
 
 
-def petro_graph(df_raw_petro_date):
+def petro_chart(df_raw_petro_date):
     fig = go.Figure(data=[go.Candlestick(x=df_raw_petro_date['Date'],
                 open=df_raw_petro_date['Open'],
                 high=df_raw_petro_date['High'],
@@ -56,7 +56,8 @@ def petro_graph(df_raw_petro_date):
     fig.update_layout(
 		height=300,
 		margin=dict(b=5,	t=0,	l=0,	r=0),
-        font=dict(size=15))
+        font=dict(size=15),
+        xaxis_rangeslider_visible=False)
 
     #fig.update_traces(textposition='inside', textfont_color='rgb(255,255,255)', textfont_size=20)
     st.plotly_chart(fig, use_container_width=True)
@@ -94,14 +95,15 @@ def dashboard(data_inicial, data_final):
     st.write(df_raw_gnews_date)
 
     with col1:
-        petro_graph(df_raw_petro_date)
+        st.subheader('Cotação histórica')
+        petro_chart(df_raw_petro_date)
         latest_news()
         news_sentiment()
 
     with col2:
+        st.subheader('Cotação dia')
         petrobras_day()
-        pass
-        #components.iframe('')
+
 
 
 if __name__ == '__main__':
