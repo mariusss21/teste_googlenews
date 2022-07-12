@@ -10,6 +10,8 @@ import plotly.graph_objects as go
 import streamlit.components.v1 as components
 import yfinance as yf
 
+components.iframe()
+
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
@@ -26,6 +28,42 @@ div.block-container{
     padding-top: 1rem;
 }
 </style>""", unsafe_allow_html=True)
+
+
+def news_teste(df):
+    result_str = '<html><table style="border: none;"><tr style="border: none;"><td style="border: none; height: 10px;"></td></tr>'
+    for n, i in df.head(5).iterrows(): #iterating through the search results
+        href = i["url"]
+        description = i["description"]
+        url_txt = i["title"]
+        src_time = i["src_time"]
+        
+        result_str += f'<a href="{href}" target="_blank" style="background-color: whitesmoke; display: block; height:100%; text-decoration: none; color: black; line-height: 1.2;">'+\
+        f'<tr style="align:justify; border-left: 5px solid transparent; border-top: 5px solid transparent; border-bottom: 5px solid transparent; font-weight: bold; font-size: 18px; background-color: whitesmoke;">{url_txt}</tr></a>'+\
+        f'<a href="{href}" target="_blank" style="background-color: whitesmoke; display: block; height:100%; text-decoration: none; color: dimgray; line-height: 1.25;">'+\
+        f'<tr style="align:justify; border-left: 5px solid transparent; border-top: 0px; border-bottom: 5px solid transparent; font-size: 14px; padding-bottom:5px;">{description}</tr></a>'+\
+        f'<a href="{href}" target="_blank" style="background-color: whitesmoke; display: block; height:100%; text-decoration: none; color: black;">'+\
+        f'<tr style="border-left: 5px solid transparent; border-top: 0px; border-bottom: 5px solid transparent; color: green; font-size: 11px;">{src_time}</tr></a>'+\
+        f'<tr style="border: none;"><td style="border: none; height: 10px;"></td></tr>'
+
+    result_str += '</table></html>'
+
+    #HTML Script to hide Streamlit menu
+    # Reference: https://discuss.streamlit.io/t/how-do-i-hide-remove-the-menu-in-production/362/8
+    hide_streamlit_style = """
+                <style>
+                #MainMenu {visibility: hidden;}
+                .css-hi6a2p {padding-top: 0rem;}
+                .css-1moshnm {visibility: hidden;}
+                .css-kywgdc {visibility: hidden;}
+                footer {visibility: hidden;}
+                </style>
+                """
+
+    st.markdown(result_str, unsafe_allow_html=True)
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+
 
 @st.cache(show_spinner=True, ttl=3600)
 def raw_petro() -> pd.DataFrame:
@@ -119,7 +157,7 @@ def dashboard(data_inicial, data_final):
             petro_chart(df)
         #news_sentiment(df_final_date)
         latest_news(df_raw_gnews)
-        
+        news_teste(df_raw_gnews_date)
 
     with col2:
         pass
