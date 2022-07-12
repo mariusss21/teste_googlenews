@@ -58,11 +58,11 @@ if __name__ == '__main__':
 
     st.sidebar.image("logo_stack.png", use_column_width=True)
     st.sidebar.title('Equipe MinIO')
+    st.sidebar.write('StackLabs finanças')
     col1, col2 = st.columns([8, 2])
 
-    st.sidebar.subheader('Menu')
-    paginas = ['Análise ações Petrobrás', 'Notícias']
-    pagina = st.sidebar.button('Selecione uma análise', paginas)
+    paginas = ['Análise ações Petrobrás', 'Notícias', 'Equipe']
+    pagina = st.sidebar.radio('Menu', paginas)
     data_inicial = st.sidebar.date_input('Data inicial', datetime.now() - timedelta(days=1))
     data_final = st.sidebar.date_input('Data final', datetime.now() - timedelta(days=30))
 
