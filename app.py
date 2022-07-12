@@ -44,7 +44,7 @@ def final_df() -> pd.DataFrame:
 
 def dashboard(data_inicial, data_final):
     df_raw_petro = raw_petro()
-    df_raw_petro = df_how
+    #df_raw_petro = df_how
     st.write(df_raw_petro)
 
     df = df_raw_petro
