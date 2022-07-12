@@ -64,8 +64,8 @@ def petro_chart(df_raw_petro_date):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def latest_news():
-    pass
+def latest_news(df):
+    st.write(df.tail(10))
 
 
 def news_sentiment(df_final_date):
@@ -117,8 +117,8 @@ def dashboard(data_inicial, data_final):
         if tipo_cotacao == 'Dia':
             st.subheader('Cotação dia')
             petro_chart(df)
-        news_sentiment(df_final_date)
-        latest_news()
+        #news_sentiment(df_final_date)
+        latest_news(df_raw_gnews)
         
 
     with col2:
