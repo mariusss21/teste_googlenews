@@ -10,9 +10,6 @@ import plotly.graph_objects as go
 import streamlit.components.v1 as components
 import yfinance as yf
 
-components.iframe()
-
-
 st.set_page_config(
     page_title="Análise ações Petrobrás",
 	layout="wide",
