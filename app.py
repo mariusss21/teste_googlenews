@@ -1,17 +1,20 @@
 from datetime import timedelta, date
 import pandas as pd
 from GoogleNews import GoogleNews
-from datetime import datetime
+from datetime import datetime, date
 import streamlit as st
 from time import sleep
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.graph_objects as go
+import streamlit.components.v1 as components
+import yfinance as yf
+
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
 	layout="wide",
-    #initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
 m = st.markdown("""
@@ -67,6 +70,11 @@ def news_sentiment():
     pass
 
 
+def petrobras_day():
+    date_ = date.today()
+    df = yf.download('EGIE3.SA', start="2020-09-28", interval = "1m")
+    st.write(df)
+
 def dashboard(data_inicial, data_final):
     #coletando os dados
     df_raw_petro = raw_petro()
@@ -84,14 +92,16 @@ def dashboard(data_inicial, data_final):
     col1, col2 = st.columns([8, 2])
     st.write(df_final_date)
     st.write(df_raw_gnews_date)
-    
+
     with col1:
         petro_graph(df_raw_petro_date)
         latest_news()
         news_sentiment()
 
     with col2:
+        petrobras_day()
         pass
+        #components.iframe('')
 
 
 if __name__ == '__main__':
