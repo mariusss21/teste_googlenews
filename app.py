@@ -58,6 +58,15 @@ def petro_graph(df_raw_petro_date):
     #fig.update_traces(textposition='inside', textfont_color='rgb(255,255,255)', textfont_size=20)
     st.plotly_chart(fig, use_container_width=True)
 
+
+def latest_news():
+    pass
+
+
+def news_sentiment():
+    pass
+
+
 def dashboard(data_inicial, data_final):
     #coletando os dados
     df_raw_petro = raw_petro()
@@ -65,6 +74,7 @@ def dashboard(data_inicial, data_final):
 
     df_raw_gnews = raw_gnews()
     df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
+    st.write(df_raw_gnews_date)
 
     df_final = final_df()
     df_final_date = df_final.loc[(df_final['Date'] >= data_inicial) & (df_final['Date'] <= data_final)]
@@ -75,6 +85,8 @@ def dashboard(data_inicial, data_final):
 
     with col1:
         petro_graph(df_raw_petro_date)
+        latest_news()
+        news_sentiment()
 
     with col2:
         pass
