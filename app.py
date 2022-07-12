@@ -70,7 +70,6 @@ def widget_news():
   "isTransparent": false,
   "displayMode": "adaptive",
   "locale": "br"
-[6:56 PM, 7/12/2022] Anderson Miranda Stacklabs: }
   </script>
 </div>
 <!-- TradingView Widget END -->
