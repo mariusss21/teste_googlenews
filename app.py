@@ -21,7 +21,9 @@ m = st.markdown("""
 <style>
 div.stButton > button:first-child{
     width: 100%;
-
+}
+div.block-container{
+    padding-top: 1rem;
 }
 </style>""", unsafe_allow_html=True)
 
@@ -90,18 +92,17 @@ def dashboard(data_inicial, data_final):
 
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
 
-    with col1:
-        
+    date_ = date.today()
+    df = yf.download('PETR4.SA', start=date_, interval = "1m")
+    df.reset_index(inplace=True)
+    df.rename(columns={'Datetime': 'Date'}, inplace=True)
 
+    with col1:
         if tipo_cotacao == 'Histórica':
             st.subheader('Cotação histórica')
             petro_chart(df_raw_petro_date)
         if tipo_cotacao == 'Dia':
             st.subheader('Cotação dia')
-            date_ = date.today()
-            df = yf.download('PETR4.SA', start=date_, interval = "1m")
-            df.reset_index(inplace=True)
-            df.rename(columns={'Datetime': 'Date'}, inplace=True)
             petro_chart(df)
         
         latest_news()
