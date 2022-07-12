@@ -74,15 +74,17 @@ def dashboard(data_inicial, data_final):
 
     df_raw_gnews = raw_gnews()
     df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
-    st.write(df_raw_gnews_date)
+    
 
     df_final = final_df()
     df_final_date = df_final.loc[(df_final['Date'] >= data_inicial) & (df_final['Date'] <= data_final)]
-    st.write(df_final_date)
+    
     st.title('Dashboard Petrobrás')
 
     col1, col2 = st.columns([8, 2])
-
+    st.write(df_final_date)
+    st.write(df_raw_gnews_date)
+    
     with col1:
         petro_graph(df_raw_petro_date)
         latest_news()
