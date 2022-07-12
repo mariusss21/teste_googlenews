@@ -158,7 +158,7 @@ def dashboard(data_inicial, data_final):
             st.subheader('Cotação dia')
             petro_chart(df)
         #news_sentiment(df_final_date)
-        latest_news(df_raw_gnews)
+        #latest_news(df_raw_gnews)
         widget_news()
 
     with col2:
