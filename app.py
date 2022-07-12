@@ -57,7 +57,7 @@ def dashboard(data_inicial, data_final):
 
 if __name__ == '__main__':
 
-    logo = Image.open('logo_stack.jpg')
+    logo = Image.open('logo_stack.png')
     st.title.image(logo, use_column_width=True)
     st.title.sidebar('Equipe MinIO')
     col1, col2 = st.columns([8, 2])
