@@ -52,7 +52,7 @@ def dashboard(data_inicial, data_final):
                 low=df['Low'],
                 close=df['Close'])])
     st.write(fig)
-    
+
     df_raw_gnews = raw_gnews()
     st.write(df_raw_gnews)
 
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     st.sidebar.write('StackLabs finanças')
     col1, col2 = st.columns([8, 2])
 
-    paginas = ['Análise ações Petrobrás', 'Notícias', 'Equipe']
+    paginas = ['Análise ações Petrobrás', 'Notícias', 'Equipe MinIO']
     pagina = st.sidebar.radio('Menu', paginas)
     data_inicial = st.sidebar.date_input('Data inicial', datetime.now() - timedelta(days=1))
     data_final = st.sidebar.date_input('Data final', datetime.now() - timedelta(days=30))
