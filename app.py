@@ -27,42 +27,44 @@ div.block-container{
 </style>""", unsafe_allow_html=True)
 
 
-def news_teste(df):
-    result_str = '<html><table style="border: none;"><tr style="border: none;"><td style="border: none; height: 10px;"></td></tr>'
-    for n, i in df.head(5).iterrows(): #iterating through the search results
-        href = i["title"]
-        description = i["desc"]
-        url_txt = i["title"]
-        src_time = i["date"]
-        
-        result_str += f'<a href="{href}" target="_blank" style="background-color: whitesmoke; display: block; height:100%; text-decoration: none; color: black; line-height: 1.2;">'+\
-        f'<tr style="align:justify; border-left: 5px solid transparent; border-top: 5px solid transparent; border-bottom: 5px solid transparent; font-weight: bold; font-size: 18px; background-color: whitesmoke;">{url_txt}</tr></a>'+\
-        f'<a href="{href}" target="_blank" style="background-color: whitesmoke; display: block; height:100%; text-decoration: none; color: dimgray; line-height: 1.25;">'+\
-        f'<tr style="align:justify; border-left: 5px solid transparent; border-top: 0px; border-bottom: 5px solid transparent; font-size: 14px; padding-bottom:5px;">{description}</tr></a>'+\
-        f'<a href="{href}" target="_blank" style="background-color: whitesmoke; display: block; height:100%; text-decoration: none; color: black;">'+\
-        f'<tr style="border-left: 5px solid transparent; border-top: 0px; border-bottom: 5px solid transparent; color: green; font-size: 11px;">{src_time}</tr></a>'+\
-        f'<tr style="border: none;"><td style="border: none; height: 10px;"></td></tr>'
-
-    result_str += '</table></html>'
-
-    #HTML Script to hide Streamlit menu
-    # Reference: https://discuss.streamlit.io/t/how-do-i-hide-remove-the-menu-in-production/362/8
-    hide_streamlit_style = """
-                <style>
-                #MainMenu {visibility: hidden;}
-                .css-hi6a2p {padding-top: 0rem;}
-                .css-1moshnm {visibility: hidden;}
-                .css-kywgdc {visibility: hidden;}
-                footer {visibility: hidden;}
-                </style>
-                """
-
-    # components.html(result_str)
-    # components.html(hide_streamlit_style)
-    # st.markdown(result_str, unsafe_allow_html=True)
-    # st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-
+def widget_news():
+    components.html("""
+<html><body>
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://br.tradingview.com/markets/" rel="noopener" target="_blank">
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    }
+  ],
+  "showSymbolLogo": true,
+  "colorTheme": "dark",
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "locale": "br"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+</body></html>
+""")
 
 @st.cache(show_spinner=True, ttl=3600)
 def raw_petro() -> pd.DataFrame:
@@ -156,7 +158,7 @@ def dashboard(data_inicial, data_final):
             petro_chart(df)
         #news_sentiment(df_final_date)
         latest_news(df_raw_gnews)
-        news_teste(df_raw_gnews_date)
+        widget_news()
 
     with col2:
         pass
