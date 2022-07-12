@@ -30,11 +30,8 @@ client = bigquery.Client(credentials=credentials)
 def query_stackoverflow() -> pd.DataFrame:
     query_job = client.query("SELECT * FROM `marioloc-1491911271221.teste1.tabela1`")
     df = query_job.result().to_dataframe()  # Waits for job to complete.
-    # df = results.to_dataframe()
     return df
-    # for row in results:
-    #     st.write(row)
-        
+
         
 def stack_minio(request):
     st.write("Inicio da Function")

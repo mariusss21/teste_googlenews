@@ -44,14 +44,20 @@ def dashboard(data_inicial, data_final):
     df_raw_petro = raw_petro()
     st.write(df_raw_petro)
 
+    df = df_raw_petro
+    st.write(df)
+    fig = go.Figure(data=[go.Candlestick(x=df['Date'],
+                open=df['Open'],
+                high=df['High'],
+                low=df['Low'],
+                close=df['Close'])])
+    st.write(fig)
+    
     df_raw_gnews = raw_gnews()
     st.write(df_raw_gnews)
 
     df_final = final_df()
     st.write(df_final)
-
-
-
 
 
 if __name__ == '__main__':
