@@ -25,23 +25,26 @@ div.stButton > button:first-child{
 @st.cache(show_spinner=True, ttl=3600)
 def raw_petro() -> pd.DataFrame:
     df = pd.read_csv('raw_petro.csv')
+    df.Date = pd.to_datetime(df.Date)
     return df
 
 
 @st.cache(show_spinner=True, ttl=3600)
 def raw_gnews() -> pd.DataFrame:
     df = pd.read_csv('raw_gnews.csv')
+    df.date = pd.to_datetime(df.date)
     return df
 
 
 @st.cache(show_spinner=True, ttl=3600)
 def final_df() -> pd.DataFrame:
-    df = pd.read_csv('df_final.csv')
+    df = pd.read_csv('df_final.csv', sep='|')
     return df
 
 
 def dashboard(data_inicial, data_final):
     df_raw_petro = raw_petro()
+    df_raw_petro = df_how
     st.write(df_raw_petro)
 
     df = df_raw_petro
