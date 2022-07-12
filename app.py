@@ -51,7 +51,7 @@ def petro_graph(df_raw_petro_date):
                 close=df_raw_petro_date['Close'])])
 
     fig.update_layout(
-		height=400,
+		height=300,
 		margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15))
 
