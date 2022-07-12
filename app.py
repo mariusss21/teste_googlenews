@@ -43,24 +43,35 @@ def final_df() -> pd.DataFrame:
     return df
 
 
-def dashboard(data_inicial, data_final):
-    df_raw_petro = raw_petro()
-    df_raw_petro_date = df_raw_petro.loc[(df_raw_petro['Date'] >= data_inicial) & (df_raw_petro['Date'] <= data_final)]
-    st.write(df_raw_petro_date)
+def petro_graph(df):
     fig = go.Figure(data=[go.Candlestick(x=df_raw_petro_date['Date'],
                 open=df_raw_petro_date['Open'],
                 high=df_raw_petro_date['High'],
                 low=df_raw_petro_date['Low'],
                 close=df_raw_petro_date['Close'])])
+
     st.write(fig)
+
+def dashboard(data_inicial, data_final):
+    #coletando os dados
+    df_raw_petro = raw_petro()
+    df_raw_petro_date = df_raw_petro.loc[(df_raw_petro['Date'] >= data_inicial) & (df_raw_petro['Date'] <= data_final)]
 
     df_raw_gnews = raw_gnews()
     df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
-    st.write(df_raw_gnews)
 
     df_final = final_df()
     df_final_date = df_final.loc[(df_final['Date'] >= data_inicial) & (df_final['Date'] <= data_final)]
-    st.write(df_final)
+
+    st.title('Dashboard Petrobrás')
+
+    col1, col2 = st.columns([8, 2])
+
+    with col1:
+        petro_graph(df_raw_petro_date)
+
+    with col2:
+        pass
 
 
 if __name__ == '__main__':
