@@ -68,8 +68,23 @@ def latest_news():
     pass
 
 
-def news_sentiment():
-    pass
+def news_sentiment(df_final_date):
+    # Define bar properties
+    labels = ['alta', 'baixa']
+
+    colors = {'alta': 'green',
+            'baixa': 'red'}
+
+    # Build dataframe
+    df_final_date['label'] = df_final_date['Score'].apply(lambda x: labels[0] if x > 0 else labels[1])
+
+    bars = []
+    for label, label_df in df_final_date.groupby('label'):
+        bars.append(go.Bar(x=df_final_date.Date,
+                        y=df_final_date.Score,
+                        name=label,
+                        marker={'color': colors[label]}))
+    st.write(bars)
 
 
 def dashboard(data_inicial, data_final):
@@ -80,7 +95,6 @@ def dashboard(data_inicial, data_final):
     df_raw_gnews = raw_gnews()
     df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
     
-
     df_final = final_df()
     df_final_date = df_final.loc[(df_final['Date'] >= data_inicial) & (df_final['Date'] <= data_final)]
     
@@ -104,9 +118,9 @@ def dashboard(data_inicial, data_final):
         if tipo_cotacao == 'Dia':
             st.subheader('Cotação dia')
             petro_chart(df)
-        
+        news_sentiment(df_final_date)
         latest_news()
-        news_sentiment()
+        
 
     with col2:
         pass
