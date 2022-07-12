@@ -24,6 +24,12 @@ div.stButton > button:first-child{
 div.block-container{
     padding-top: 1rem;
 }
+
+#MainMenu {visibility: hidden;}
+.css-hi6a2p {padding-top: 0rem;}
+.css-1moshnm {visibility: hidden;}
+.css-kywgdc {visibility: hidden;}
+footer {visibility: hidden;}
 </style>""", unsafe_allow_html=True)
 
 
