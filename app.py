@@ -100,7 +100,6 @@ def dashboard(data_inicial, data_final):
             df = yf.download('EGIE3.SA', start=date_, interval = "1m")
             df.reset_index(inplace=True)
             df.rename(columns={'Datetime': 'Date'}, inplace=True)
-            st.write(df)
             petro_chart(df)
         
         latest_news()
