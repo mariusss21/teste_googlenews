@@ -32,7 +32,6 @@ def widget_news():
 <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://br.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text">Mercados</span></a> por TradingView</div>
   <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
   {
   "symbols": [
