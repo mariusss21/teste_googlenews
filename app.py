@@ -78,7 +78,7 @@ def dashboard(data_inicial, data_final):
 
     df_final = final_df()
     df_final_date = df_final.loc[(df_final['Date'] >= data_inicial) & (df_final['Date'] <= data_final)]
-
+    st.write(df_final_date)
     st.title('Dashboard Petrobrás')
 
     col1, col2 = st.columns([8, 2])
