@@ -56,8 +56,8 @@ def dashboard(data_inicial, data_final):
 
 if __name__ == '__main__':
 
-    st.title("Stack labs finance ")
-    st.title('Equipe MinIO')
+    st.title.image("logo_stack.png", use_column_width=True)
+    st.title.sidebar('Equipe MinIO')
     col1, col2 = st.columns([8, 2])
 
     st.sidebar.subheader('Menu')
