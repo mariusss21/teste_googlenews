@@ -79,13 +79,22 @@ def news_sentiment(df_final_date):
     df_final_date['label'] = df_final_date['score'].apply(lambda x: labels[0] if x > 0 else labels[1])
 
     bars = []
+    fig = go.Figure()
     for label, label_df in df_final_date.groupby('label'):
         df_aux = df_final_date.loc[df_final_date['label'] == label]
-        bars.append(go.Bar(x=df_aux.Date,
+        #bars.append(go.Bar(x=df_aux.Date,
+        fig.append(go.Bar(x=df_aux.Date,
                         y=df_aux.score,
                         name=label,
                         marker={'color': colors[label]}))
-    st.write(bars)
+    fig.update_layout(
+		height=300,
+		margin=dict(b=5,	t=0,	l=0,	r=0),
+        font=dict(size=15),
+        xaxis_rangeslider_visible=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+
 
 
 def dashboard(data_inicial, data_final):
