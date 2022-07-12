@@ -99,7 +99,7 @@ def dashboard(data_inicial, data_final):
         if tipo_cotacao == 'Dia':
             st.subheader('Cotação dia')
             date_ = date.today()
-            df = yf.download('EGIE3.SA', start=date_, interval = "1m")
+            df = yf.download('PETR4.SA', start=date_, interval = "1m")
             df.reset_index(inplace=True)
             df.rename(columns={'Datetime': 'Date'}, inplace=True)
             petro_chart(df)
