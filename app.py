@@ -36,7 +36,7 @@ def raw_petro() -> pd.DataFrame:
 
 @st.cache(show_spinner=True, ttl=3600)
 def raw_gnews() -> pd.DataFrame:
-    df = pd.read_csv('raw_gnews.csv')
+    df = pd.read_csv('raw_gnews.csv', index_col=0)
     df.date = pd.to_datetime(df.date).dt.date
     return df
 
