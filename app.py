@@ -28,11 +28,10 @@ div.block-container{
 
 
 def widget_news():
-    components.html("""[6:56 PM, 7/12/2022] Anderson Miranda Stacklabs: <html style='margin: 0px; paddi'><body>
-<!-- TradingView Widget BEGIN -->
+    components.html("""<!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div class="tradingview-widget-container__widget"></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
   {
   "symbols": [
     {
@@ -40,39 +39,30 @@ def widget_news():
       "proName": "BMFBOVESPA:IBOV"
     },
     {
-      "description": "Dolar",
-      "proName": "BMFBOVESPA:DOL1!"
-    },
-    {
-      "description": "BTC",
-      "proName": "BINANCE:BTCUSDT"
-    },
-    {
-      "description": "Euro",
-      "proName": "BMFBOVESPA:EUR1!"
-    },
-    {
-      "description": "PETR4",
+      "description": "Petrobrás",
       "proName": "BMFBOVESPA:PETR4"
     },
     {
-      "description": "PETR3",
+      "description": "Petrobrás 3",
       "proName": "BMFBOVESPA:PETR3"
     },
     {
-      "description": "IBOV11",
-      "proName": "BMFBOVESPA:IBOV11"
+      "description": "USD/BRL",
+      "proName": "FX_IDC:USDBRL"
+    },
+    {
+      "description": "EUR/BRL",
+      "proName": "FX_IDC:EURBRL"
     }
   ],
-  "showSymbolLogo": true,
   "colorTheme": "dark",
   "isTransparent": false,
-  "displayMode": "adaptive",
+  "showSymbolLogo": true,
   "locale": "br"
+}
   </script>
 </div>
 <!-- TradingView Widget END -->
-</body></html>
 """)
 
 @st.cache(show_spinner=True, ttl=3600)
