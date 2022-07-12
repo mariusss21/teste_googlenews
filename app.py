@@ -91,11 +91,13 @@ def dashboard(data_inicial, data_final):
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
 
     with col1:
-        st.subheader('Cotação histórica')
+        
 
         if tipo_cotacao == 'Histórica':
+            st.subheader('Cotação histórica')
             petro_chart(df_raw_petro_date)
         if tipo_cotacao == 'Dia':
+            st.subheader('Cotação dia')
             date_ = date.today()
             df = yf.download('EGIE3.SA', start=date_, interval = "1m")
             df.reset_index(inplace=True)
