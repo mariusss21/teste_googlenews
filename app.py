@@ -150,7 +150,7 @@ def dashboard(data_inicial, data_final):
             petro_chart(df_petr4)
 
         qtd_news(df_raw_gnews_date, df_raw_petro_date)
-        #latest_news(df_raw_gnews)
+        latest_news(df_raw_gnews)
 
     with col2:
         live_values(df_petr4, df_ibov, texto)
