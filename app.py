@@ -189,7 +189,7 @@ def news_sources(df):
 
     fig = go.Figure(data=[go.Bar(y=dfmed.media, x=dfmed.perc, orientation='h')])
     fig.update_layout(
-        height=500,
+        height=475,
         margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15),
         )
