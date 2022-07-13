@@ -71,12 +71,10 @@ def latest_news(df):
 def qtd_news(df: pd.DataFrame):
     df_count = df.groupby('date').count().copy()
     df_count.reset_index(inplace=True)
-    st.write(df_count)
-
     #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
 
     #label = list(df_count['label'])
-    fig = go.Figure(data=[go.Bar(x=df_count.Date,
+    fig = go.Figure(data=[go.Bar(x=df_count.date,
                         y=df_count.title,
                         #marker={'color': label}
                         )])
@@ -121,16 +119,12 @@ def dashboard(data_inicial, data_final):
     col1, col2 = st.columns([8, 2])
 
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
-    st.write(datetime.now().hour)
-    if datetime.now().hour >= 13:
+    if datetime.now().hour >= 13 and datetime.now().minute > 5:
         date_ = date.today()
         texto = 'Atual'
-        st.write('1')
     else: 
         date_ = date.today() - timedelta(days=1)
         texto = 'de ontem'
-        st.write('2')
-        st.write(date_)
 
     df_petr4 = yf.download('PETR4.SA', start=date_, interval = "1m")
     df_petr4.reset_index(inplace=True)
