@@ -141,7 +141,7 @@ def word_cloud(df_news):
     all_summary = all_summary.replace("?", "")
     all_summary = all_summary.replace(",", "")
     all_summary = all_summary.replace("|", "")
-    all_summary = all_summary.replace("(", "")
+    all_summary = all_summary.replace("(", " ")
     all_summary = all_summary.replace(")", "")
     all_summary = all_summary.replace("Petrobras", "Petrobrás")
     all_summary = all_summary.replace(" ", "  ")
