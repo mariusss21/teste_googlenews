@@ -159,7 +159,7 @@ def word_cloud(df_news):
     # Carrega Imagem
     #wordcloud.to_file("sumario_wordcloud.png")
     #st.image("sumario_wordcloud.png")
-    st.plotly_chart(fig, height=380)
+    st.image(fig, height=380)
 
 
 def news_sources(df):
