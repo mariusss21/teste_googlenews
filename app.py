@@ -68,13 +68,13 @@ def latest_news(df):
     st.write(df.tail(10))
 
 
-def qtd_news(df: pd.DataFrame):
+def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     df_count = df.groupby('date').count().copy()
     df_count.reset_index(inplace=True)
     #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
 
     #label = list(df_count['label'])
-    fig = go.Figure(data=[go.Bar(x=df_count.date,
+    fig = go.Figure(data=[go.Bar(x=df_raw_petro.Date,
                         y=df_count.title,
                         #marker={'color': label}
                         )])
@@ -142,7 +142,7 @@ def dashboard(data_inicial, data_final):
             st.subheader('Cotação dia')
             petro_chart(df_petr4)
 
-        qtd_news(df_raw_gnews_date)
+        qtd_news(df_raw_gnews_date, df_raw_petro_date)
         #latest_news(df_raw_gnews)
 
     with col2:
