@@ -109,7 +109,7 @@ def dashboard(data_inicial, data_final):
 
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
 
-    date_ = date.today()
+    date_ = date.today() - timedelta(days=1)
     df_petr4 = yf.download('PETR4.SA', start=date_, interval = "1m")
     df_petr4.reset_index(inplace=True)
     df_petr4.rename(columns={'Datetime': 'Date'}, inplace=True)
