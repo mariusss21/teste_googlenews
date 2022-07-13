@@ -85,7 +85,8 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
 		height=120,
 		margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15),
-        xaxis_rangeslider_visible=False,)
+        xaxis_rangeslider_visible=False,
+        xaxis_visible=False)
         #title_text='Quantidade de notícias coletadas por dia')
     
     fig.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
