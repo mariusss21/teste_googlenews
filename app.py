@@ -66,14 +66,16 @@ def petro_chart(df_raw_petro_date):
 
 def latest_news(df):
     df_noticias_view = df.tail(10)
-    for i in range(df_noticias_view.shape[0]):
-        row = df_noticias_view.iloc[i]
-        st.markdown("---")
-        st.markdown(f"""
-            ##### {i+1}. {row['media']} - **{row['title']}**
-            {row['desc']}\n
-            *{row['date']}* 
-            """)
+    st.subheader('Últimas notícias')
+    with st.expander('Últimas 10 notícias'):
+        for i in range(df_noticias_view.shape[0]):
+            row = df_noticias_view.iloc[i]
+            st.markdown("---")
+            st.markdown(f"""
+                ##### {i+1}. {row['media']} - **{row['title']}**
+                {row['desc']}\n
+                *{row['date']}* 
+                """)
 
 
 def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
