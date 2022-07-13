@@ -265,7 +265,7 @@ if __name__ == '__main__':
         
         with col2:
             st.subheader('Palavras mais frequentes')
-            word_cloud(df_raw_gnews)
+            word_cloud(df_raw_gnews_date)
 
         st.subheader('Notícias')
 
