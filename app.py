@@ -97,7 +97,8 @@ def live_values(df_petr4, df_ibov):
      value=round(df_ibov.tail(1)['Adj Close'].item(), 2), 
      delta=round(float(df_ibov.tail(1)['Adj Close'].item() - df_ibov.head(1)['Open'].item())/df_ibov.head(1)['Open'].item(), 2), 
      delta_color="normal")
-    st.write(round(float(df_ibov.tail(1)['Adj Close'].item() - df_ibov.head(1)['Open'].item())/df_ibov.head(1)['Open'].item(), 2))
+
+    st.write(round(float(df_ibov.tail(1)['Adj Close'].item() - df_ibov.head(1)['Open'].item()), 2))
 
 def dashboard(data_inicial, data_final):
     #coletando os dados
