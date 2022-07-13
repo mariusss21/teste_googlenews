@@ -115,8 +115,8 @@ def dashboard(data_inicial, data_final):
     df_petr4.rename(columns={'Datetime': 'Date'}, inplace=True)
 
     df_ibov = yf.download('^BVSP', start=date_, interval = "1m")
-    df_petr4.reset_index(inplace=True)
-    df_petr4.rename(columns={'Datetime': 'Date'}, inplace=True)
+    df_ibov.reset_index(inplace=True)
+    df_ibov.rename(columns={'Datetime': 'Date'}, inplace=True)
 
     with col1:
         if tipo_cotacao == 'Histórica':
