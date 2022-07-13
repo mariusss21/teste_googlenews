@@ -148,7 +148,7 @@ def word_cloud(df_news):
 
     # Lista de stopword
     stopwords = set(STOPWORDS)
-    stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo", 'e', 'é', 'que', 'se', 'o', 'a', 'um', 'uma', 'para'])
+    stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo", 'e', 'é', 'que', 'se', 'o', 'a', 'um', 'uma', 'para', 'na', 'pela'])
     #stopwords = set(get_stop_words('portuguese'))
     # stopwords.append(['é'])
     # Gerar uma wordcloud
