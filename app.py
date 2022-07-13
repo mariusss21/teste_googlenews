@@ -25,46 +25,6 @@ div.block-container{
     padding-top: 1rem;
 }
 </style>""", unsafe_allow_html=True)
-
-
-def widget_news():
-    components.html("""<!-- TradingView Widget BEGIN -->
-  <div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-  {
-  "symbols": [
-    {
-      "description": "Bovespa",
-      "proName": "BMFBOVESPA:IBOV"
-    },
-    {
-      "description": "PETR4",
-      "proName": "BMFBOVESPA:PETR4"
-    },
-    {
-      "description": "PETR3",
-      "proName": "BMFBOVESPA:PETR3"
-    },
-    {
-      "description": "USD/BRL",
-      "proName": "FX_IDC:USDBRL"
-    },
-    {
-      "description": "EUR/BRL",
-      "proName": "FX_IDC:EURBRL"
-    }
-  ],
-  "colorTheme": "dark",
-  "isTransparent": false,
-  "showSymbolLogo": true,
-  "isTransparent": true,
-  "locale": "br"
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
-""")
     
 
 @st.cache(show_spinner=True, ttl=3600)
@@ -125,6 +85,10 @@ def news_sentiment(df_final_date):
     st.plotly_chart(fig, use_container_width=True)
 
 
+def live_values(df_petr4, df_ibov):
+    st.write(df_ibov)
+    st.write(df_petr4)
+
 
 def dashboard(data_inicial, data_final):
     #coletando os dados
@@ -146,9 +110,13 @@ def dashboard(data_inicial, data_final):
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
 
     date_ = date.today()
-    df = yf.download('PETR4.SA', start=date_, interval = "1m")
-    df.reset_index(inplace=True)
-    df.rename(columns={'Datetime': 'Date'}, inplace=True)
+    df_petr4 = yf.download('PETR4.SA', start=date_, interval = "1m")
+    df_petr4.reset_index(inplace=True)
+    df_petr4.rename(columns={'Datetime': 'Date'}, inplace=True)
+
+    df_ibov = yf.download('IBOV', start=date_, interval = "1m")
+    df_petr4.reset_index(inplace=True)
+    df_petr4.rename(columns={'Datetime': 'Date'}, inplace=True)
 
     with col1:
         if tipo_cotacao == 'Histórica':
@@ -156,13 +124,12 @@ def dashboard(data_inicial, data_final):
             petro_chart(df_raw_petro_date)
         if tipo_cotacao == 'Dia':
             st.subheader('Cotação dia')
-            petro_chart(df)
+            petro_chart(df_petr4)
         #news_sentiment(df_final_date)
         #latest_news(df_raw_gnews)
-        widget_news()
 
     with col2:
-        pass
+        live_values(df_petr4, df_ibov)
 
 
 
