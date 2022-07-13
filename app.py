@@ -161,7 +161,7 @@ def word_cloud(df_news):
     st.image("sumario_wordcloud.png")
 
 
-def news_source(df_news):
+def news_sources(df_news):
     pass
 
 
