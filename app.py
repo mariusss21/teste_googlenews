@@ -233,21 +233,6 @@ def dashboard(data_inicial, data_final):
         qtd_news(df_raw_gnews_date, df_raw_petro_date)
         latest_news(df_raw_gnews)
 
-        st.subheader('Notícias')
-
-        with st.expander('Notícias do período'):
-            news_qtd = st.number_input('Quantidade de dados', value=10, min_value=1, max_value=1000)
-            df_noticias_view = df_raw_gnews_date.sort_values('date', ascending=True)
-            df_noticias_view = df_noticias_view.tail(news_qtd)
-            for i in range(df_noticias_view.shape[0]):
-                row = df_noticias_view.iloc[i]
-                st.markdown("---")
-                st.markdown(f"""
-                    ##### {i+1}. {row['media']} - **{row['title']}**
-                    {row['desc']}\n
-                    *{row['date']}* 
-                    """)
-
     with col2:
         live_values(df_petr4, df_ibov, texto)
 
@@ -281,6 +266,21 @@ if __name__ == '__main__':
         with col2:
             st.subheader('Palavras mais frequentes')
             word_cloud(df_raw_gnews)
+
+        st.subheader('Notícias')
+
+        with st.expander('Notícias do período'):
+            news_qtd = st.number_input('Quantidade de dados', value=10, min_value=1, max_value=1000)
+            df_noticias_view = df_raw_gnews_date.sort_values('date', ascending=True)
+            df_noticias_view = df_noticias_view.tail(news_qtd)
+            for i in range(df_noticias_view.shape[0]):
+                row = df_noticias_view.iloc[i]
+                st.markdown("---")
+                st.markdown(f"""
+                    ##### {i+1}. {row['media']} - **{row['title']}**
+                    {row['desc']}\n
+                    *{row['date']}* 
+                    """)
             
     # with col1:
     #     if select_bq:
