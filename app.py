@@ -89,6 +89,8 @@ def live_values(df_petr4, df_ibov):
     st.write(df_ibov)
     st.write(df_petr4)
 
+    st.metric(label="Gas price", value=df_ibov.tail(1)['Adj Close'].item(), delta=-0.5, delta_color="normal")
+
 
 def dashboard(data_inicial, data_final):
     #coletando os dados
