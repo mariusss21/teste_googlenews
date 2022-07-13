@@ -118,7 +118,7 @@ def dashboard(data_inicial, data_final):
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
 
     if datetime.now().hour >= 10:
-        date = date.today()
+        date_ = date.today()
         texto = 'Atual'
     else: 
         date_ = date.today() - timedelta(days=1)
