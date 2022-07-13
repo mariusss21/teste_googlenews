@@ -154,7 +154,7 @@ def word_cloud(df_news):
     fig, ax = plt.subplots(figsize=(5,10))
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.set_axis_off()
-    plt.imshow(wordcloud)
+    #plt.imshow(wordcloud)
 
     # Carrega Imagem
     wordcloud.to_file("sumario_wordcloud.png")
