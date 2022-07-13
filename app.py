@@ -272,6 +272,7 @@ if __name__ == '__main__':
         with st.expander('Notícias do período'):
             news_qtd = st.number_input('Quantidade de notícias', value=10, min_value=1, max_value=1000)
             df_noticias_view = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
+            df_noticias_view.sort_values(by='date', ascending=False, inplace=True)
             df_noticias_view = df_noticias_view.head(int(news_qtd))
             for i in range(df_noticias_view.shape[0]):
                 row = df_noticias_view.iloc[i]
