@@ -176,7 +176,7 @@ def news_sources(df):
     dfmed.sort_values(by='perc', ascending=False, inplace=True)
     dfmed.reset_index(inplace=True)
     dfmed = dfmed.head(30)
-    dfmed.sort_index(ascending=False).plot(kind='barh',x='media', y='perc', figsize=(20,16),fontsize=(14))
+    st.write(dfmed.sort_index(ascending=False).plot(kind='barh',x='media', y='perc', figsize=(20,16),fontsize=(14)))
 
 
 def dashboard(data_inicial, data_final):
