@@ -271,7 +271,7 @@ if __name__ == '__main__':
 
         with st.expander('Notícias do período'):
             news_qtd = st.number_input('Quantidade de notícias', value=10, min_value=1, max_value=1000)
-            df_noticias_view = df_raw_gnews_date.sort_values('date', ascending=False)
+            df_noticias_view = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
             df_noticias_view = df_noticias_view.head(int(news_qtd))
             st.write(df_raw_gnews)
             for i in range(df_noticias_view.shape[0]):
