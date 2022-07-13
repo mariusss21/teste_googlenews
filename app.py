@@ -159,7 +159,7 @@ def word_cloud(df_news):
     # Carrega Imagem
     #wordcloud.to_file("sumario_wordcloud.png")
     #st.image("sumario_wordcloud.png")
-    st.image(fig, height=380)
+    st.image(fig)
 
 
 def news_sources(df):
@@ -176,7 +176,7 @@ def news_sources(df):
     dfmed.sort_values(by='perc', ascending=False, inplace=True)
     dfmed.reset_index(inplace=True)
     dfmed = dfmed.head(30)
-    dfmed.sort_values(by='perc', ascending=False, inplace=True)
+    dfmed.sort_values(by='perc', ascending=True, inplace=True)
 
     fig = go.Figure(data=[go.Bar(y=dfmed.media, x=dfmed.perc, orientation='h')])
     fig.update_layout(
