@@ -151,7 +151,7 @@ def word_cloud(df_news):
                           background_color="black",
                           width=1600, height=800).generate(all_summary)
     # Mostrar a imagem final
-    fig, ax = plt.subplots(figsize=(10,5))
+    fig, ax = plt.subplots(figsize=(5,10))
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.set_axis_off()
     plt.imshow(wordcloud)
