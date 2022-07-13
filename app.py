@@ -159,7 +159,7 @@ def word_cloud(df_news):
     # Carrega Imagem
     #wordcloud.to_file("sumario_wordcloud.png")
     #st.image("sumario_wordcloud.png")
-    st.image(fig)
+    st.write(fig)
 
 
 def news_sources(df):
@@ -180,7 +180,7 @@ def news_sources(df):
 
     fig = go.Figure(data=[go.Bar(y=dfmed.media, x=dfmed.perc, orientation='h')])
     fig.update_layout(
-        height=390,
+        height=600,
         margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15),
         )
