@@ -86,9 +86,6 @@ def news_sentiment(df_final_date):
 
 
 def live_values(df_petr4, df_ibov):
-    st.write(df_ibov)
-    st.write(df_petr4)
-
     st.metric(label="Índice Bovespa",
      value=round(df_ibov.tail(1)['Adj Close'].item(), 1), 
      delta=round((df_ibov.tail(1)['Adj Close'].item() - df_ibov.head(1)['Open'].item())/df_ibov.head(1)['Open'].item(), 2), 
