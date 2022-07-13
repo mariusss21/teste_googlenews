@@ -177,12 +177,11 @@ def news_sources(df):
     dfmed.reset_index(inplace=True)
     dfmed = dfmed.head(30)
 
-    fig = go.Figure(data=[go.Bar(x=dfmed.media, y=dfmed.perc)])
+    fig = go.Figure(data=[go.Bar(x=dfmed.media, y=dfmed.perc, orientation='h')])
     fig.update_layout(
-        height=100,
+        height=400,
         margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15),
-        xaxis_rangeslider_visible=False,
         )
         #title_text='Quantidade de notícias coletadas por dia')
     
