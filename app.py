@@ -68,21 +68,24 @@ def latest_news(df):
     st.write(df.tail(10))
 
 
-def news_sentiment(df_final_date):
-    df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
+def qtd_news(df: pd.DataFrame):
+    df_count = df['date'].groupby('date').count().copy()
 
-    label = list(df_final_date['label'])
-    fig = go.Figure(data=[go.Bar(x=df_final_date.Date,
-                        y=df_final_date.score,
-                        marker={'color': label})])
+    st.write(df)
+    #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
+
+    # label = list(df_final_date['label'])
+    # fig = go.Figure(data=[go.Bar(x=df_final_date.Date,
+    #                     y=df_final_date.score,
+    #                     marker={'color': label})])
     
-    fig.update_layout(
-		height=300,
-		margin=dict(b=5,	t=0,	l=0,	r=0),
-        font=dict(size=15),
-        xaxis_rangeslider_visible=False)
+    # fig.update_layout(
+	# 	height=300,
+	# 	margin=dict(b=5,	t=0,	l=0,	r=0),
+    #     font=dict(size=15),
+    #     xaxis_rangeslider_visible=False)
 
-    st.plotly_chart(fig, use_container_width=True)
+    # st.plotly_chart(fig, use_container_width=True)
 
 
 def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
@@ -139,7 +142,8 @@ def dashboard(data_inicial, data_final):
         if tipo_cotacao == 'Dia':
             st.subheader('Cotação dia')
             petro_chart(df_petr4)
-        #news_sentiment(df_final_date)
+
+        qtd_news(df_raw_gnews_date)
         #latest_news(df_raw_gnews)
 
     with col2:
