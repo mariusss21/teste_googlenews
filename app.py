@@ -162,7 +162,7 @@ def word_cloud(df_news):
     #st.image("sumario_wordcloud.png")
     st.write(fig)
 
-    st.write(stylecloud.gen_stylecloud(text=all_summary, icon_name='fas fa-apple-alt'))
+    st.image(stylecloud.gen_stylecloud(text=all_summary, icon_name='fas fa-apple-alt'))
 
 
 def news_sources(df):
