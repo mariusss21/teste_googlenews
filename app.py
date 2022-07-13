@@ -12,6 +12,7 @@ import streamlit.components.v1 as components
 import yfinance as yf
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+import stylecloud
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
@@ -151,7 +152,7 @@ def word_cloud(df_news):
                           background_color="black",
                           width=1600, height=800).generate(all_summary)
     # Mostrar a imagem final
-    fig, ax = plt.subplots(figsize=(5,10))
+    fig, ax = plt.subplots(figsize=(10,5))
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.set_axis_off()
     #plt.imshow(wordcloud)
@@ -160,6 +161,8 @@ def word_cloud(df_news):
     #wordcloud.to_file("sumario_wordcloud.png")
     #st.image("sumario_wordcloud.png")
     st.write(fig)
+
+    st.write(stylecloud.gen_stylecloud(all_summary))
 
 
 def news_sources(df):
