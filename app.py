@@ -147,13 +147,13 @@ def word_cloud(df_news):
 
     # Lista de stopword
     stopwords = set(STOPWORDS)
-    stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo", 'e', 'é'])
+    stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo", 'e', 'é', 'que', 'se', 'o', 'a', 'um', 'uma'])
     #stopwords = set(get_stop_words('portuguese'))
     # stopwords.append(['é'])
     # Gerar uma wordcloud
     wordcloud = WordCloud(stopwords=stopwords,
                           background_color="black",
-                          width=400, height=300).generate(all_summary)
+                          width=400, height=250).generate(all_summary)
 
     # Mostrar a imagem final
     fig, ax = plt.subplots(figsize=(5,5))
@@ -189,7 +189,7 @@ def news_sources(df):
 
     fig = go.Figure(data=[go.Bar(y=dfmed.media, x=dfmed.perc, orientation='h')])
     fig.update_layout(
-        height=600,
+        height=500,
         margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15),
         )
