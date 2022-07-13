@@ -143,6 +143,7 @@ def word_cloud(df_news):
     all_summary = all_summary.replace("|", "")
     all_summary = all_summary.replace("(", "")
     all_summary = all_summary.replace(")", "")
+    all_summary = all_summary.replace(" ", "  ")
 
     # Lista de stopword
     stopwords = set(STOPWORDS)
