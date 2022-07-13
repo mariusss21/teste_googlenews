@@ -13,6 +13,7 @@ import yfinance as yf
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import stylecloud
+from stopwords import get_stop_words
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
@@ -148,7 +149,7 @@ def word_cloud(df_news):
     stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo"])
 
     # Gerar uma wordcloud
-    wordcloud = WordCloud(stopwords=stopwords,
+    wordcloud = WordCloud(stopwords=get_stop_words('portuguese'),
                           background_color="black",
                           width=1600, height=800).generate(all_summary)
     # Mostrar a imagem final
