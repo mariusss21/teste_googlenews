@@ -20,3 +20,4 @@ google-cloud-bigquery
 yfinance
 pandas-gbq
 wordcloud
+stylecloud

@@ -182,7 +182,7 @@ def news_sources(df):
     fig.update_layout(
         height=450,
         margin=dict(b=5,	t=0,	l=0,	r=0),
-        font=dict(size=10),
+        font=dict(size=15),
         )
         #title_text='Quantidade de notícias coletadas por dia')
     
