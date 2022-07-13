@@ -273,7 +273,7 @@ if __name__ == '__main__':
             news_qtd = st.number_input('Quantidade de notícias', value=10, min_value=1, max_value=1000)
             df_noticias_view = df_raw_gnews_date.sort_values('date', ascending=False)
             df_noticias_view = df_noticias_view.head(news_qtd)
-            st.write(df_noticias_view)
+            st.write(df_raw_gnews_date)
             for i in range(df_noticias_view.shape[0]):
                 row = df_noticias_view.iloc[i]
                 st.markdown("---")
