@@ -147,12 +147,12 @@ def word_cloud(df_news):
     # Lista de stopword
     stopwords = set(STOPWORDS)
     stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo", 'e', 'é'])
-    # stopwords = get_stop_words('portuguese')
+    stopwords = get_stop_words('portuguese')
     # stopwords.append(['é'])
     # Gerar uma wordcloud
     wordcloud = WordCloud(stopwords=stopwords,
                           background_color="black",
-                          height=600).generate(all_summary)
+                          width=500, height=600).generate(all_summary)
     # Mostrar a imagem final
     fig, ax = plt.subplots(figsize=(10,5))
     ax.imshow(wordcloud, interpolation='bilinear')
