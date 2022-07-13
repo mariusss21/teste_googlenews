@@ -69,6 +69,7 @@ def latest_news(df):
 
 
 def qtd_news(df: pd.DataFrame):
+    st.write(df)
     df_count = df['Date'].groupby('Date').count().copy()
 
     st.write(df_count)
