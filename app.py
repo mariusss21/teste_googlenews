@@ -145,11 +145,12 @@ def word_cloud(df_news):
     all_summary = all_summary.replace(")", "")
 
     # Lista de stopword
-    stopwords = set(STOPWORDS)
-    stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo"])
-
+    # stopwords = set(STOPWORDS)
+    # stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo"])
+    stopwords = get_stop_words('portuguese')
+    stopwords.append()
     # Gerar uma wordcloud
-    wordcloud = WordCloud(stopwords=get_stop_words('portuguese'),
+    wordcloud = WordCloud(stopwords=stopwords,
                           background_color="black",
                           width=1600, height=800).generate(all_summary)
     # Mostrar a imagem final
@@ -163,7 +164,9 @@ def word_cloud(df_news):
     #st.image("sumario_wordcloud.png")
     st.write(fig)
 
-    st.write(stylecloud.gen_stylecloud(file_path='requirements.txt', icon_name='fas fa-apple-alt'))
+    style_words = stylecloud.gen_stylecloud(text=all_summary, icon_name='fas fa-apple-alt')
+    style_words.to_file("sumario_wordcloud.png")
+    st.image("sumario_wordcloud.png")
 
 
 def news_sources(df):
