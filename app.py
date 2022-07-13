@@ -152,7 +152,7 @@ def word_cloud(df_news):
     # Gerar uma wordcloud
     wordcloud = WordCloud(stopwords=stopwords,
                           background_color="black",
-                          height=800).generate(all_summary)
+                          height=600).generate(all_summary)
     # Mostrar a imagem final
     fig, ax = plt.subplots(figsize=(10,5))
     ax.imshow(wordcloud, interpolation='bilinear')
