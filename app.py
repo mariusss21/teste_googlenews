@@ -85,8 +85,8 @@ def news_sentiment(df_final_date):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def live_values(df_petr4, df_ibov):
-    st.title('Cotação atual')
+def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
+    st.subheader(f'Cotação {dia}')
 
     st.metric(label="PETR4",
      value=round(df_petr4.tail(1)['Adj Close'].item(), 2),
@@ -97,6 +97,8 @@ def live_values(df_petr4, df_ibov):
      value=round(df_ibov.tail(1)['Adj Close'].item(), 2), 
      delta=round(float(df_ibov.tail(1)['Adj Close'].item() - df_ibov.head(1)['Open'].item())* 100 /df_ibov.head(1)['Open'].item(), 2), 
      delta_color="normal")
+
+    st.subheader('Previsão para o dia')
 
 
 def dashboard(data_inicial, data_final):
@@ -111,14 +113,17 @@ def dashboard(data_inicial, data_final):
     df_final_date = df_final.loc[(df_final['Date'] >= data_inicial) & (df_final['Date'] <= data_final)]
     
     st.title('Dashboard Petrobrás')
-
     col1, col2 = st.columns([8, 2])
-    #st.write(df_final_date)
-    #st.write(df_raw_gnews_date)
 
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
 
-    date_ = date.today() - timedelta(days=1)
+    if datetime.now().hour >= 10:
+        date = date.today()
+        texto = 'Atual'
+    else: 
+        date_ = date.today() - timedelta(days=1)
+        texto = 'de ontem'
+
     df_petr4 = yf.download('PETR4.SA', start=date_, interval = "1m")
     df_petr4.reset_index(inplace=True)
     df_petr4.rename(columns={'Datetime': 'Date'}, inplace=True)
@@ -138,7 +143,7 @@ def dashboard(data_inicial, data_final):
         #latest_news(df_raw_gnews)
 
     with col2:
-        live_values(df_petr4, df_ibov)
+        live_values(df_petr4, df_ibov, texto)
 
 
 
