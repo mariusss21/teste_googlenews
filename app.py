@@ -176,7 +176,21 @@ def news_sources(df):
     dfmed.sort_values(by='perc', ascending=False, inplace=True)
     dfmed.reset_index(inplace=True)
     dfmed = dfmed.head(30)
-    st.write(dfmed.sort_index(ascending=False).plot(kind='barh',x='media', y='perc', figsize=(20,16),fontsize=(14)))
+
+    fig = go.Figure(data=[go.Bar(x=dfmed.media, y=dfmed.perc)])
+    fig.update_layout(
+        height=100,
+        margin=dict(b=5,	t=0,	l=0,	r=0),
+        font=dict(size=15),
+        xaxis_rangeslider_visible=False,
+        xaxis_visible=False)
+        #title_text='Quantidade de notícias coletadas por dia')
+    
+    fig.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
+                  marker_line_width=1.5, opacity=0.6)
+
+    st.plotly_chart(fig, use_container_width=True)
+    #st.write(dfmed.sort_index(ascending=False).plot(kind='barh',x='media', y='perc', figsize=(20,16),fontsize=(14)))
 
 
 def dashboard(data_inicial, data_final):
