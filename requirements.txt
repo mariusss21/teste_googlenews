@@ -21,3 +21,4 @@ yfinance
 pandas-gbq
 wordcloud
 stylecloud
+stop_words
