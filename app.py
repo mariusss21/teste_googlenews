@@ -96,7 +96,7 @@ def live_values(df_petr4, df_ibov):
 
     st.metric(label="PETR4",
      value=round(df_petr4.tail(1)['Adj Close'].item(), 1),
-     delta=round((df_petr4.tail(1)['Adj Close'].item() - df_petr4.head(1)['Open'].item()/df_petr4.head(1)['Open'].item()), 2),
+     delta=round((df_petr4.tail(1)['Adj Close'].item() - df_petr4.head(1)['Open'].item())/df_petr4.head(1)['Open'].item(), 2),
      delta_color="normal")
 
 
