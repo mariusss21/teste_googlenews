@@ -71,7 +71,7 @@ def latest_news(df):
 def qtd_news(df: pd.DataFrame):
     df_count = df['date'].groupby('date').count().copy()
 
-    st.write(df)
+    st.write(df_count)
     #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
 
     # label = list(df_final_date['label'])
@@ -119,7 +119,7 @@ def dashboard(data_inicial, data_final):
     col1, col2 = st.columns([8, 2])
 
     tipo_cotacao = st.sidebar.radio('Cotação', ['Histórica', 'Dia'])
-
+    st.write(datetime.now().hour)
     if datetime.now().hour >= 13:
         date_ = date.today()
         texto = 'Atual'
