@@ -13,7 +13,7 @@ import yfinance as yf
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import stylecloud
-from stopwords import get_stop_words
+from stop_words import get_stop_words
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
