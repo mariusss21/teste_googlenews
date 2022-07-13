@@ -70,7 +70,7 @@ def latest_news(df):
 
 def qtd_news(df: pd.DataFrame):
     st.write(df)
-    df_count = df['Date'].groupby('Date').count().copy()
+    df_count = df.groupby('date').count().copy()
 
     st.write(df_count)
     #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
