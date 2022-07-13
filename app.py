@@ -69,24 +69,24 @@ def latest_news(df):
 
 
 def qtd_news(df: pd.DataFrame):
-    st.write(df)
     df_count = df.groupby('date').count().copy()
+    df_count.reset_index(inplace=True)
 
-    st.write(df_count)
     #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
 
-    # label = list(df_final_date['label'])
-    # fig = go.Figure(data=[go.Bar(x=df_final_date.Date,
-    #                     y=df_final_date.score,
-    #                     marker={'color': label})])
+    #label = list(df_count['label'])
+    fig = go.Figure(data=[go.Bar(x=df_count.Date,
+                        y=df_count.title,
+                        #marker={'color': label}
+                        )])
     
-    # fig.update_layout(
-	# 	height=300,
-	# 	margin=dict(b=5,	t=0,	l=0,	r=0),
-    #     font=dict(size=15),
-    #     xaxis_rangeslider_visible=False)
+    fig.update_layout(
+		height=100,
+		margin=dict(b=5,	t=0,	l=0,	r=0),
+        font=dict(size=15),
+        xaxis_rangeslider_visible=False)
 
-    # st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
