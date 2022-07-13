@@ -123,9 +123,11 @@ def dashboard(data_inicial, data_final):
     if datetime.now().hour >= 13:
         date_ = date.today()
         texto = 'Atual'
+        st.write('1')
     else: 
         date_ = date.today() - timedelta(days=1)
         texto = 'de ontem'
+        st.write('2')
 
     df_petr4 = yf.download('PETR4.SA', start=date_, interval = "1m")
     df_petr4.reset_index(inplace=True)
