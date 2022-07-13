@@ -171,7 +171,7 @@ def word_cloud(df_news):
 
 def news_sources(df):
     df['title'] = df['title'].apply(lambda x: "" if "petrobras" not in x else x)
-    dfmed1 = df
+    dfmed1 = df.copy()
     dfmed1['media'] = dfmed1['media'].str.replace('Click Petróleo e Gás','CPG Click Petroleo e Gas')
     dfmed = dfmed1.groupby(['media']).count()
     dfmed.sort_values(by='title', ascending=False, inplace=True)
