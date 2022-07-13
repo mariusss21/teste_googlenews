@@ -161,6 +161,10 @@ def word_cloud(df_news):
     st.image("sumario_wordcloud.png")
 
 
+def news_source(df_news):
+    pass
+
+
 def dashboard(data_inicial, data_final):
     #coletando os dados
     df_raw_petro = raw_petro()
@@ -224,9 +228,15 @@ if __name__ == '__main__':
         dashboard(data_inicial, data_final)
 
     if pagina == 'Notícias':
+        st.title('Análise de notícias')
+        col1, col2 = st.columns(2)
         df_raw_gnews = raw_gnews()
         df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
-        word_cloud(df_raw_gnews)
+        with col1:
+            word_cloud(df_raw_gnews)
+        
+        with col2:
+            news_sources(df_raw_gnews_date)
             
     # with col1:
     #     if select_bq:
