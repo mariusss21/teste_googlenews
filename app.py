@@ -128,6 +128,7 @@ def dashboard(data_inicial, data_final):
         date_ = date.today() - timedelta(days=1)
         texto = 'de ontem'
         st.write('2')
+        st.write(date_)
 
     df_petr4 = yf.download('PETR4.SA', start=date_, interval = "1m")
     df_petr4.reset_index(inplace=True)
