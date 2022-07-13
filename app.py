@@ -72,10 +72,11 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     df_count = df.groupby('date').count().copy()
     df_count.reset_index(inplace=True)
     df_count.rename(columns={'date': 'Date'}, inplace=True)
+    st.write(df_count)
 
     df_chart = df_raw_petro['Date'].merge(df_count, on='Date', how='left')
     #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
-
+    st.write(df_chart)
     #label = list(df_count['label'])
     fig = go.Figure(data=[go.Bar(x=df_raw_petro.Date,
                         y=df_chart.title,
