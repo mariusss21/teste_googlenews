@@ -82,8 +82,8 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
                         )])
     
     fig.update_layout(
-		height=100,
-		margin=dict(b=5,	t=40,	l=0,	r=0),
+		height=120,
+		margin=dict(b=5,	t=50,	l=0,	r=0),
         font=dict(size=15),
         xaxis_rangeslider_visible=False,
         title_text='Quantidade de notícias coletadas por dia')
