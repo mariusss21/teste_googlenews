@@ -72,7 +72,6 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     df_count = df.groupby('date').count().copy()
     df_count.reset_index(inplace=True)
     df_count.rename(columns={'date': 'Date'}, inplace=True)
-    st.write(df_count)
 
     df_chart = df_raw_petro.merge(df_count, on='Date', how='left')
     #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
@@ -87,7 +86,11 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
 		height=100,
 		margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15),
-        xaxis_rangeslider_visible=False)
+        xaxis_rangeslider_visible=False,
+        title_text='Quantidade de notícias coletadas por dia')
+    
+    fig.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
+                  marker_line_width=1.5, opacity=0.6)
 
     st.plotly_chart(fig, use_container_width=True)
 
