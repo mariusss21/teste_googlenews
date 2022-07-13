@@ -162,8 +162,21 @@ def word_cloud(df_news):
     st.write(fig)
 
 
-def news_sources(df_news):
-    pass
+def news_sources(df):
+    df['title'] = df['title'].apply(lambda x: "" if "petrobras" not in x else x)
+    dfmed1 = df
+    dfmed1['media'] = dfmed1['media'].str.replace('Click Petróleo e Gás','CPG Click Petroleo e Gas')
+    dfmed = dfmed1.groupby(['media']).count()
+    dfmed.sort_values(by='title', ascending=False, inplace=True)
+    dfmed.reset_index(inplace=True)
+    totnot = dfmed['title'].sum()
+    dfmed['title'] = pd.to_numeric(dfmed['title'])
+    dfmed['perc'] = ((dfmed['title'] / totnot) *100)
+    dfmed['perc'] = dfmed['perc'].round(2)
+    dfmed.sort_values(by='perc', ascending=False, inplace=True)
+    dfmed.reset_index(inplace=True)
+    dfmed = dfmed.head(30)
+    dfmed.sort_index(ascending=False).plot(kind='barh',x='media', y='perc', figsize=(20,16),fontsize=(14))
 
 
 def dashboard(data_inicial, data_final):
