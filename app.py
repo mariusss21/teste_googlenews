@@ -87,10 +87,8 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     df_count = df.groupby('date').count().copy()
     df_count.reset_index(inplace=True)
     df_count.rename(columns={'date': 'Date'}, inplace=True)
-
     df_chart = df_raw_petro.merge(df_count, on='Date', how='left')
-    #df_final_date['label'] = df_final_date['score'].apply(lambda x: 'green' if x > 0 else 'red')
-    #label = list(df_count['label'])
+
     fig = go.Figure(data=[go.Bar(x=df_raw_petro.Date,
                         y=df_chart.title,
                         #marker={'color': label}
@@ -148,9 +146,8 @@ def word_cloud(df_news):
 
     # Lista de stopword
     stopwords = set(STOPWORDS)
-    stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo", 'e', 'é', 'que', 'se', 'o', 'a', 'um', 'uma', 'para', 'na', 'pela'])
-    #stopwords = set(get_stop_words('portuguese'))
-    # stopwords.append(['é'])
+    stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo", 'e', 'é', 'que', 'se', 'o', 'a', 'um', 'uma', 'para', 'na', 'pela', 'por', 'à'])
+
     # Gerar uma wordcloud
     wordcloud = WordCloud(stopwords=stopwords,
                           background_color="black",
@@ -160,16 +157,10 @@ def word_cloud(df_news):
     fig, ax = plt.subplots(figsize=(5,5))
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.set_axis_off()
-    #plt.imshow(wordcloud)
 
     # Carrega Imagem
-    #wordcloud.to_file("sumario_wordcloud.png")
-    #st.image("sumario_wordcloud.png")
-    st.write(fig)
-
-    # style_words = stylecloud.gen_stylecloud(text=all_summary, icon_name='fas fa-apple-alt')
-    # style_words.to_file("sumario_wordcloud.png")
-    # st.image("sumario_wordcloud.png")
+    wordcloud.to_file("sumario_wordcloud.png")
+    st.image("sumario_wordcloud.png")
 
 
 def news_sources(df):
@@ -194,13 +185,11 @@ def news_sources(df):
         margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15),
         )
-        #title_text='Quantidade de notícias coletadas por dia')
     
     fig.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
 
     st.plotly_chart(fig, use_container_width=True)
-    #st.write(dfmed.sort_index(ascending=False).plot(kind='barh',x='media', y='perc', figsize=(20,16),fontsize=(14)))
 
 
 def dashboard(data_inicial, data_final):
@@ -243,6 +232,21 @@ def dashboard(data_inicial, data_final):
 
         qtd_news(df_raw_gnews_date, df_raw_petro_date)
         latest_news(df_raw_gnews)
+
+        st.subheader('Notícias')
+
+        with st.expander('Notícias do período'):
+            news_qtd = st.number_input('Quantidade de dados', value=10, min_value=1, max_value=1000)
+            df_noticias_view = df_raw_gnews_date.sort_values('date', ascending=True)
+            df_noticias_view = df_noticias_view.tail(news_qtd)
+            for i in range(df_noticias_view.shape[0]):
+                row = df_noticias_view.iloc[i]
+                st.markdown("---")
+                st.markdown(f"""
+                    ##### {i+1}. {row['media']} - **{row['title']}**
+                    {row['desc']}\n
+                    *{row['date']}* 
+                    """)
 
     with col2:
         live_values(df_petr4, df_ibov, texto)
