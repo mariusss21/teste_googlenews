@@ -82,7 +82,7 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
                         )])
     
     fig.update_layout(
-		height=120,
+		height=100,
 		margin=dict(b=5,	t=0,	l=0,	r=0),
         font=dict(size=15),
         xaxis_rangeslider_visible=False,
