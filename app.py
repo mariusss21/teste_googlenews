@@ -7,8 +7,11 @@ from time import sleep
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.graph_objects as go
+import matplotlib.pyplot as plt
 import streamlit.components.v1 as components
 import yfinance as yf
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
@@ -121,6 +124,43 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
     st.subheader('Previsão para o dia')
 
 
+def word_cloud(df_news):
+    # Especificar a coluna de titulo do DataFrame
+    #summary = df_news['title']
+    titulos = " ".join(s for s in df_news['title'])
+    descricao = " ".join(s for s in df_news['desc'])
+    all_summary = titulos + " " + descricao
+
+    # Concatenar as palavras e remover de String
+    #all_summary = " ".join(s for s in summary)
+    all_summary = all_summary.replace("\n", "")
+    all_summary = all_summary.replace(".", "")
+    all_summary = all_summary.replace(",", "")
+    all_summary = all_summary.replace("?", "")
+    all_summary = all_summary.replace(",", "")
+    all_summary = all_summary.replace("|", "")
+    all_summary = all_summary.replace("(", "")
+    all_summary = all_summary.replace(")", "")
+
+    # Lista de stopword
+    stopwords = set(STOPWORDS)
+    stopwords.update(["da", "meu", "em", "você", "de", "ao", "os", "mês", "ano", "neste", "podem", "pelo"])
+
+    # Gerar uma wordcloud
+    wordcloud = WordCloud(stopwords=stopwords,
+                          background_color="black",
+                          width=1600, height=800).generate(all_summary)
+    # Mostrar a imagem final
+    fig, ax = plt.subplots(figsize=(10,5))
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.set_axis_off()
+    plt.imshow(wordcloud)
+
+    # Carrega Imagem
+    wordcloud.to_file("sumario_wordcloud.png")
+    st.image("sumario_wordcloud.png")
+
+
 def dashboard(data_inicial, data_final):
     #coletando os dados
     df_raw_petro = raw_petro()
@@ -182,6 +222,11 @@ if __name__ == '__main__':
     
     if pagina == 'Análise ações Petrobrás':
         dashboard(data_inicial, data_final)
+
+    if pagina == 'Notícias':
+        df_raw_gnews = raw_gnews()
+        df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
+        word_cloud(df_raw_gnews)
             
     # with col1:
     #     if select_bq:
