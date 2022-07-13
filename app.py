@@ -247,10 +247,12 @@ if __name__ == '__main__':
         df_raw_gnews = raw_gnews()
         df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
         with col1:
-            word_cloud(df_raw_gnews)
+            st.subheader('Fontes das notícias')
+            news_sources(df_raw_gnews_date)
         
         with col2:
-            news_sources(df_raw_gnews_date)
+            st.subheader('Palavras mais frequentes')
+            word_cloud(df_raw_gnews)
             
     # with col1:
     #     if select_bq:
