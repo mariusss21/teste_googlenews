@@ -132,7 +132,7 @@ def predict_model(df, ):
     df_final99['Date'] = pd.to_datetime(df_final99['Date'])
 
     treinar_ate_data_str = '2022-02-02'
-    data_limite_teste = '2022-04-01'
+    data_limite_teste = '2022-07-01'
 
     X_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['score','neu_robd4','neg_finbertd2','scored3']]
     y_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['Fechamento']]
