@@ -13,4 +13,4 @@ pandas-gbq
 wordcloud
 stylecloud
 stop_words
-pickleshare==0.7.5
+joblib==1.0.0
