@@ -13,6 +13,7 @@ import yfinance as yf
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import pickle
+import joblib
 
 
 st.set_page_config(
@@ -125,9 +126,12 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
 
 def predict_model(df, data_predict):
     #model = pickle.load(open('model_ensemble.pkl', 'rb'))
+    model = joblib.load(open('model_ensemble.pkl', 'rb'))
+
+    #joblib.load(
     #model = pickle.load(
-    with open('model_ensemble.pkl', 'rb') as pickle_file:
-        model = pickle.load(pickle_file)
+    # with open('model_ensemble.pkl', 'rb') as pickle_file:
+    #     model = pickle.load(pickle_file)
 
     
     df_pred = df.copy()
