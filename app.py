@@ -147,7 +147,7 @@ def predict_model(df, ):
 
     #Predizendo y
     y_pred = ensemblevote.predict(X_test)
-
+    X_test2['y_pred'] = y_pred
     ensemblevote.score(X_test, y_test)
     st.write(ensemblevote.score(X_test, y_test))
     st.write(y_pred)
