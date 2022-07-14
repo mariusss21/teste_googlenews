@@ -88,7 +88,7 @@ def petro_chart(df_raw_petro_date):
 
 
 def latest_news(df):
-    df_noticias_view = df.tail(10)
+    df_noticias_view = df.sort_values(by='date', ascending=False).head(10)
     st.subheader('Últimas notícias')
     with st.expander('Últimas 10 notícias'):
         for i in range(df_noticias_view.shape[0]):
