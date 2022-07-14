@@ -23,6 +23,13 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+client = bigquery.Client(credentials=credentials)
+
+
 m = st.markdown("""
 <style>
 div.stButton > button:first-child{
@@ -36,15 +43,23 @@ div.block-container{
 
 @st.cache(show_spinner=True, ttl=3600)
 def raw_petro() -> pd.DataFrame:
-    df = pd.read_csv('raw_petro.csv')
+    # df = pd.read_csv('raw_petro.csv')
+    # df.Date = pd.to_datetime(df.Date).dt.date
+
+    query_job = client.query("SELECT * FROM `stack-minio.dts_stack_minio.raw_yfinance`")
+    df = query_job.result().to_dataframe()
     df.Date = pd.to_datetime(df.Date).dt.date
     return df
 
 
 @st.cache(show_spinner=True, ttl=3600)
 def raw_gnews() -> pd.DataFrame:
-    df = pd.read_csv('raw_gnews.csv', index_col=0)
-    df.date = pd.to_datetime(df.date).dt.date
+    # df = pd.read_csv('raw_gnews.csv', index_col=0)
+    # df.date = pd.to_datetime(df.date).dt.date
+
+    query_job = client.query("SELECT * FROM `stack-minio.dts_stack_minio.raw_googlenews`")
+    df = query_job.result().to_dataframe()
+    df.Date = pd.to_datetime(df.Date, format="%d/%m/%Y").dt.date
     return df
 
 
