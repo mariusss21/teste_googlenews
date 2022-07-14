@@ -12,8 +12,8 @@ import streamlit.components.v1 as components
 import yfinance as yf
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
-import stylecloud
-from stop_words import get_stop_words
+import pickle
+
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
@@ -104,7 +104,6 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     
     fig.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
-
     st.plotly_chart(fig, use_container_width=True)
 
 
@@ -122,6 +121,15 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
      delta_color="normal")
 
     st.subheader('Previsão para o dia')
+
+
+def predict_model(df, data_predict):
+    model = pickle.load(open('modelo-Ensemble.pkl', 'rb'))
+    df_pred = df.copy()
+    df_pred['Date'] = pd.to_datetime(df_pred['Date'])
+    df_pred['Date'] = df_pred['Date'].dt.date
+    df_pred = df_pred.loc(df_pred['Date'] > data_predict)
+    st.code(model.predict((df_pred)))
 
 
 def word_cloud(df_news):
@@ -232,6 +240,7 @@ def dashboard(data_inicial, data_final):
 
         qtd_news(df_raw_gnews_date, df_raw_petro_date)
         latest_news(df_raw_gnews)
+        predict_model(df_final_date, date(2022, 3, 3))
 
     with col2:
         live_values(df_petr4, df_ibov, texto)
