@@ -1,5 +1,6 @@
 from datetime import timedelta, date
 import pandas as pd
+import numpy as np
 from GoogleNews import GoogleNews
 from datetime import datetime, date
 import streamlit as st
@@ -14,7 +15,7 @@ from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import pickle
 import joblib
-
+from dateutil import parser
 
 st.set_page_config(
     page_title="Análise ações Petrobrás",
@@ -126,7 +127,7 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
 
 def predict_model(df, data_predict):
     #model = pickle.load(open('model_ensemble.pkl', 'rb'))
-    model = joblib.load(open('model_ensemble.pkl', 'rb'))
+    ensemblevote = joblib.load(open('model_ensemble.pkl', 'rb'))
 
     #joblib.load(
     #model = pickle.load(
@@ -134,11 +135,33 @@ def predict_model(df, data_predict):
     #     model = pickle.load(pickle_file)
 
     
-    df_pred = df.copy()
-    df_pred['Date'] = pd.to_datetime(df_pred['Date'])
-    df_pred['Date'] = df_pred['Date'].dt.date
-    df_pred = df_pred.loc[df_pred['Date'] > data_predict]
-    st.code(model.predict((df_pred)))
+    df_final99 = df.copy()
+    df_final99['Date'] = pd.to_datetime(df_final99['Date'])
+    # df_pred['Date'] = pd.to_datetime(df_pred['Date'])
+    # df_pred['Date'] = df_pred['Date'].dt.date
+    # df_pred = df_pred.loc[df_pred['Date'] > data_predict]
+
+
+    treinar_ate_data_str = '2022-04-01'
+    data_limite_teste = '2022-06-30'
+
+    X_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['score','neu_robd4','neg_finbertd2','scored3']]
+    y_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['Fechamento']]
+    y_train = np.ravel(y_train)   
+        
+    X_test = df_final99[(df_final99['Date'] > parser.parse(treinar_ate_data_str)) & (df_final99['Date'] <= parser.parse(data_limite_teste))][['score','neu_robd4','neg_finbertd2','scored3']]
+    y_test = df_final99[(df_final99['Date'] > parser.parse(treinar_ate_data_str)) & (df_final99['Date'] <= parser.parse(data_limite_teste))][['Fechamento']]
+    y_test = np.ravel(y_test) 
+
+    ensemblevote.fit(X_train,y_train)
+    #quadratic.fit(X_train,y_train)
+
+    #Predizendo y
+    y_pred = ensemblevote.predict(X_test)
+
+    ensemblevote.score(X_test, y_test)
+    st.write(ensemblevote.score(X_test, y_test))
+    #st.code(model.predict((df_pred)))
 
 
 def word_cloud(df_news):
