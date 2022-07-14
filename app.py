@@ -142,8 +142,8 @@ def predict_model(df, data_predict):
     # df_pred = df_pred.loc[df_pred['Date'] > data_predict]
 
 
-    treinar_ate_data_str = '2022-04-01'
-    data_limite_teste = '2022-06-30'
+    treinar_ate_data_str = '2022-02-02'
+    data_limite_teste = '2022-04-01'
 
     X_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['score','neu_robd4','neg_finbertd2','scored3']]
     y_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['Fechamento']]
@@ -277,7 +277,7 @@ def dashboard(data_inicial, data_final):
         live_values(df_petr4, df_ibov, texto)
 
     with col1:
-        predict_model(df_final_date, date(2022, 3, 3))
+        predict_model(df_final, date(2022, 3, 3))
 
 
 if __name__ == '__main__':
