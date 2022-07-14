@@ -134,16 +134,16 @@ def predict_model(df, ):
     treinar_ate_data_str = '2022-02-02'
     data_limite_teste = '2022-07-01'
 
-    X_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['score','neu_robd4','neg_finbertd2','scored3']]
-    y_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['Fechamento']]
-    y_train = np.ravel(y_train)   
+    # X_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['score','neu_robd4','neg_finbertd2','scored3']]
+    # y_train = df_final99[(df_final99['Date'] <= parser.parse(treinar_ate_data_str))][['Fechamento']]
+    # y_train = np.ravel(y_train)   
         
     X_test = df_final99[(df_final99['Date'] > parser.parse(treinar_ate_data_str)) & (df_final99['Date'] <= parser.parse(data_limite_teste))][['score','neu_robd4','neg_finbertd2','scored3']]
     X_test2 = df_final99[(df_final99['Date'] > parser.parse(treinar_ate_data_str)) & (df_final99['Date'] <= parser.parse(data_limite_teste))][['Date', 'score','neu_robd4','neg_finbertd2','scored3']]
     y_test = df_final99[(df_final99['Date'] > parser.parse(treinar_ate_data_str)) & (df_final99['Date'] <= parser.parse(data_limite_teste))][['Fechamento']]
     y_test = np.ravel(y_test) 
 
-    ensemblevote.fit(X_train,y_train)
+    #ensemblevote.fit(X_train,y_train)
 
     #Predizendo y
     y_pred = ensemblevote.predict(X_test)
