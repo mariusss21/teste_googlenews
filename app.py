@@ -150,7 +150,7 @@ def predict_model(df, ):
     ensemblevote.score(X_test, y_test)
     st.write(ensemblevote.score(X_test, y_test))
     st.write(y_pred)
-    st.write(y_test)
+    st.write(X_test)
 
 
 def word_cloud(df_news):
