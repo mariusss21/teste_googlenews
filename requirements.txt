@@ -14,3 +14,4 @@ wordcloud
 stylecloud
 stop_words
 joblib==1.0.0
+mlxtend @ git+git://github.com/rasbt/mlxtend.git@2811e092a0a290ec65718bd79a2be8262a23dbe5
