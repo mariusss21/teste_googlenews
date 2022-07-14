@@ -125,22 +125,11 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
     st.subheader('Previsão para o dia')
 
 
-def predict_model(df, data_predict):
-    #model = pickle.load(open('model_ensemble.pkl', 'rb'))
+def predict_model(df, ):
     ensemblevote = joblib.load(open('model_ensemble.pkl', 'rb'))
-
-    #joblib.load(
-    #model = pickle.load(
-    # with open('model_ensemble.pkl', 'rb') as pickle_file:
-    #     model = pickle.load(pickle_file)
-
-    
+  
     df_final99 = df.copy()
     df_final99['Date'] = pd.to_datetime(df_final99['Date'])
-    # df_pred['Date'] = pd.to_datetime(df_pred['Date'])
-    # df_pred['Date'] = df_pred['Date'].dt.date
-    # df_pred = df_pred.loc[df_pred['Date'] > data_predict]
-
 
     treinar_ate_data_str = '2022-02-02'
     data_limite_teste = '2022-04-01'
@@ -154,7 +143,6 @@ def predict_model(df, data_predict):
     y_test = np.ravel(y_test) 
 
     ensemblevote.fit(X_train,y_train)
-    #quadratic.fit(X_train,y_train)
 
     #Predizendo y
     y_pred = ensemblevote.predict(X_test)
@@ -163,7 +151,6 @@ def predict_model(df, data_predict):
     st.write(ensemblevote.score(X_test, y_test))
     st.write(y_pred)
     st.write(y_test)
-    #st.code(model.predict((df_pred)))
 
 
 def word_cloud(df_news):
