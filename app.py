@@ -135,7 +135,7 @@ def predict_model(df, data_predict):
 def word_cloud(df_news):
     # Especificar a coluna de titulo do DataFrame
     #summary = df_news['title']
-    titulos = " ".join(s for s in df_news['title'])
+    titulos = " ".join(s for s in df_news['title']) #as
     descricao = " ".join(s for s in df_news['desc'])
     all_summary = titulos + " " + descricao
 
