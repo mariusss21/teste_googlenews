@@ -240,11 +240,12 @@ def dashboard(data_inicial, data_final):
 
         qtd_news(df_raw_gnews_date, df_raw_petro_date)
         latest_news(df_raw_gnews)
-        predict_model(df_final_date, date(2022, 3, 3))
 
     with col2:
         live_values(df_petr4, df_ibov, texto)
 
+    with col1:
+        predict_model(df_final_date, date(2022, 3, 3))
 
 
 if __name__ == '__main__':
