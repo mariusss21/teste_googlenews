@@ -161,6 +161,8 @@ def predict_model(df, data_predict):
 
     ensemblevote.score(X_test, y_test)
     st.write(ensemblevote.score(X_test, y_test))
+    st.write(y_pred)
+    st.write(y_test)
     #st.code(model.predict((df_pred)))
 
 
@@ -277,7 +279,7 @@ def dashboard(data_inicial, data_final):
         live_values(df_petr4, df_ibov, texto)
 
     with col1:
-        predict_model(df_final, date(2022, 3, 3))
+        predict_model(df_final)
 
 
 if __name__ == '__main__':
