@@ -15,3 +15,4 @@ stylecloud
 stop_words
 joblib==1.0.0
 mlxtend
+lightgbm
