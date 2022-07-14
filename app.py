@@ -139,8 +139,8 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
 
     st.subheader('Previsão para o dia')
 
-
-def predict_model(df, ):
+@st.cache(show_spinner=True, ttl=3600)
+def predict_model(df):
     ensemblevote = joblib.load(open('model_ensemble.pkl', 'rb'))
   
     df_final99 = df.copy()
