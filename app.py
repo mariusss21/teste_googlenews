@@ -138,7 +138,7 @@ def predict_model(df, data_predict):
     df_pred['Date'] = pd.to_datetime(df_pred['Date'])
     df_pred['Date'] = df_pred['Date'].dt.date
     df_pred = df_pred.loc[df_pred['Date'] > data_predict]
-    #st.code(model.predict((df_pred)))
+    st.code(model.predict((df_pred)))
 
 
 def word_cloud(df_news):
