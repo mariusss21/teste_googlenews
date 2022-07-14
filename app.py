@@ -128,6 +128,8 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
 def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
     st.subheader(f'Cotação {dia}')
 
+
+    st.write(df_petr4)
     st.metric(label="PETR4",
      value=round(df_petr4.tail(1)['Adj Close'].item(), 2),
      delta=round((df_petr4.tail(1)['Adj Close'].item() - df_petr4.head(1)['Open'].item()) * 100 /df_petr4.head(1)['Open'].item(), 2),
@@ -245,8 +247,6 @@ def dashboard(data_inicial, data_final):
 
     df_raw_gnews = raw_gnews()
     df_raw_gnews_date = df_raw_gnews.loc[(df_raw_gnews['date'] >= data_inicial) & (df_raw_gnews['date'] <= data_final)]
-
-    st.write(df_raw_gnews)
     
     df_final = final_df()
     df_final_date = df_final.loc[(df_final['Date'] >= data_inicial) & (df_final['Date'] <= data_final)]
