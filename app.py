@@ -60,6 +60,7 @@ def raw_gnews() -> pd.DataFrame:
     query_job = client.query("SELECT * FROM `stack-minio.dts_stack_minio.raw_googlenews`")
     df = query_job.result().to_dataframe()
     df.date = pd.to_datetime(df.date, format="%d/%m/%Y").dt.date
+    df.drop_duplicates(inplace=True)
     return df
 
 
