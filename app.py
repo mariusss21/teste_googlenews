@@ -139,6 +139,7 @@ def predict_model(df, ):
     y_train = np.ravel(y_train)   
         
     X_test = df_final99[(df_final99['Date'] > parser.parse(treinar_ate_data_str)) & (df_final99['Date'] <= parser.parse(data_limite_teste))][['score','neu_robd4','neg_finbertd2','scored3']]
+    X_test2 = df_final99[(df_final99['Date'] > parser.parse(treinar_ate_data_str)) & (df_final99['Date'] <= parser.parse(data_limite_teste))][['Date', 'score','neu_robd4','neg_finbertd2','scored3']]
     y_test = df_final99[(df_final99['Date'] > parser.parse(treinar_ate_data_str)) & (df_final99['Date'] <= parser.parse(data_limite_teste))][['Fechamento']]
     y_test = np.ravel(y_test) 
 
@@ -150,7 +151,7 @@ def predict_model(df, ):
     ensemblevote.score(X_test, y_test)
     st.write(ensemblevote.score(X_test, y_test))
     st.write(y_pred)
-    st.write(X_test)
+    st.write(X_test2)
 
 
 def word_cloud(df_news):
