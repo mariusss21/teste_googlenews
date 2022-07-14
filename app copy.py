@@ -21,6 +21,7 @@ div.stButton > button:first-child{
 
 }
 </style>""", unsafe_allow_html=True)
+
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcp_service_account"]
 )
