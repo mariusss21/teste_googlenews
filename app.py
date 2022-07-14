@@ -125,7 +125,7 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
 
 def predict_model(df, data_predict):
     #model = pickle.load(open('model_ensemble.pkl', 'rb'))
-    model = pickle.dump(open('model_ensemble.pkl', 'rb'))
+    model = pickle.dump(file='model_ensemble.pkl')
     #model = pickle.load(
     #with open('model_ensemble.pkl', 'rb') as pickle_file:
         #model = pickle.dump(pickle_file)
