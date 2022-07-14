@@ -124,7 +124,7 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
 
 
 def predict_model(df, data_predict):
-    model = pickle.load(open('modelo-Ensemble.pkl', 'rb'))
+    model = pickle.load(open('modelo-Gaussian.pkl', 'rb'))
     df_pred = df.copy()
     df_pred['Date'] = pd.to_datetime(df_pred['Date'])
     df_pred['Date'] = df_pred['Date'].dt.date
