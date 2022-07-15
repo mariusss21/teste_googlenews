@@ -71,7 +71,7 @@ def final_df() -> pd.DataFrame:
     return df
 
 
-def petro_chart(df_raw_petro_date):
+def petro_chart(df_raw_petro_date: pd.DataFrame):
     fig = go.Figure(data=[go.Candlestick(x=df_raw_petro_date['Date'],
                 open=df_raw_petro_date['Open'],
                 high=df_raw_petro_date['High'],
@@ -87,7 +87,7 @@ def petro_chart(df_raw_petro_date):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def latest_news(df):
+def latest_news(df: pd.DataFrame):
     df_noticias_view = df.sort_values(by='date', ascending=False).head(10)
     st.subheader('Últimas notícias')
     with st.expander('Últimas 10 notícias'):
@@ -128,7 +128,7 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
+def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, df_news: pd.DataFrame, dia: str):
     st.subheader(f'Cotação {dia}')
 
     st.metric(label="PETR4",
@@ -143,8 +143,14 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, dia: str):
 
     st.subheader('Previsão para o dia')
 
+    st.write('Aqui vai ficar a previsão')
+    today = datetime.now() - timedelta(hour=3)
+    quantidade = df_news.loc[df_news['date'] == today.date()].shape[0]
+    st.write(f'Há {quantidade} notícias hoje')
+
+
 @st.cache(show_spinner=True, ttl=3600)
-def predict_model(df):
+def predict_model(df: pd.DataFrame):
     ensemblevote = joblib.load(open('model_ensemble.pkl', 'rb'))
   
     df_final99 = df.copy()
@@ -171,7 +177,7 @@ def predict_model(df):
     return X_test2
 
 
-def model_chart(df, df_raw_petro):
+def model_chart(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     df_aux = df.copy()
     df_aux['Date'] = pd.to_datetime(df_aux['Date']).dt.date
     df_chart = df_raw_petro.merge(df_aux[['Date', 'y_pred']], on='Date', how='left')
@@ -202,9 +208,7 @@ def model_chart(df, df_raw_petro):
     st.plotly_chart(fig, use_container_width=True)
 
 
-
-
-def word_cloud(df_news):
+def word_cloud(df_news: pd.DataFrame):
     # Especificar a coluna de titulo do DataFrame
     #summary = df_news['title']
     titulos = " ".join(s for s in df_news['title']) #as
@@ -243,7 +247,7 @@ def word_cloud(df_news):
     st.image("sumario_wordcloud.png",use_column_width=True)
 
 
-def news_sources(df):
+def news_sources(df: pd.DataFrame):
     df['title'] = df['title'].apply(lambda x: "" if "petrobras" not in x else x)
     dfmed1 = df.copy()
     dfmed1['media'] = dfmed1['media'].str.replace('Click Petróleo e Gás','CPG Click Petroleo e Gas')
@@ -316,7 +320,7 @@ def dashboard(data_inicial, data_final):
         latest_news(df_raw_gnews)
 
     with col2:
-        live_values(df_petr4, df_ibov, texto)
+        live_values(df_petr4, df_ibov, df_raw_petro_date, texto)
 
     with col1:
         predict_model(df_final)
