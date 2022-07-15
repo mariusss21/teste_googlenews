@@ -173,6 +173,7 @@ def model_chart(df, df_raw_petro):
     df_aux['Date'] = pd.to_datetime(df_aux['Date']).dt.date
     df_chart = df_raw_petro.merge(df_aux[['Date', 'y_pred']], on='Date', how='left')
     df_chart.loc[df_chart['y_pred'] == 0] = -1
+    df_chart['y_pred'] = df_chart['y_pred'] * 10
     df_chart['y_pred'].fillna(0, inplace=True)
 
     #df_chart['colors'] = 'green' if df_chart['y_pred'] == 1 else 'red'
