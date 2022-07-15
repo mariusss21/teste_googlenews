@@ -176,7 +176,7 @@ def model_chart(df, df_raw_petro):
     df_chart['y_pred'].fillna(0, inplace=True)
 
     #df_chart['colors'] = 'green' if df_chart['y_pred'] == 1 else 'red'
-    list_colors = ['green' if df_chart['y_pred'] == 1 else 'red']
+    df_chart['colors'] = ['green' if df_chart['y_pred'] == 1 else 'red']
     #list_colors = list(df_chart)
 
     fig = go.Figure(data=[go.Bar(x=df_raw_petro.Date,
