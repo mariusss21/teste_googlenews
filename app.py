@@ -105,7 +105,7 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     df_count = df.copy()
     df_count['contador'] = 1
     df_count = df_count[['date', 'contador']].groupby('date').sum()
-    #df_count.reset_index(inplace=True)
+    df_count.reset_index(inplace=True)
     df_count.rename(columns={'date': 'Date'}, inplace=True)
     df_chart = df_raw_petro.merge(df_count, on='Date', how='left')
 
