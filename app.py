@@ -146,6 +146,8 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, df_news: pd.DataF
     st.write('Aqui vai ficar a previsão')
     today = datetime.now() - timedelta(hours=3)
     quantidade = df_news.loc[df_news['Date'] == today.date()].shape[0]
+    st.write(today)
+    st.write(today.date())
     st.write(f'Há {quantidade} notícias hoje')
 
 
