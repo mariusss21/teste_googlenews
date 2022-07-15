@@ -322,7 +322,7 @@ def dashboard(data_inicial, data_final):
         latest_news(df_raw_gnews)
 
     with col2:
-        live_values(df_petr4, df_ibov, df_raw_petro_date, texto)
+        live_values(df_petr4, df_ibov, df_raw_petro, texto)
 
     with col1:
         predict_model(df_final)
