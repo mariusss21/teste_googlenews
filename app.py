@@ -303,7 +303,7 @@ def dashboard(data_inicial, data_final):
             petro_chart(df_petr4)
         
         df_predict = predict_model(df_final)
-        model_chart(df_predict)
+        model_chart(df_predict, df_raw_petro_date)
         qtd_news(df_raw_gnews_date, df_raw_petro_date)
         latest_news(df_raw_gnews)
 
