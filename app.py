@@ -102,13 +102,14 @@ def latest_news(df):
 
 
 def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
-    df_count = df.groupby('date').count().copy()
+    df_count['contador'] = 1
+    df_count = df[['date', 'contador']].groupby('date').sum()
     df_count.reset_index(inplace=True)
     df_count.rename(columns={'date': 'Date'}, inplace=True)
     df_chart = df_raw_petro.merge(df_count, on='Date', how='left')
 
     fig = go.Figure(data=[go.Bar(x=df_raw_petro.Date,
-                        y=df_chart.title,
+                        y=df_chart.contador,
                         #marker={'color': label}
                         )])
     
@@ -169,7 +170,6 @@ def predict_model(df):
 
 
 def model_chart(df, df_raw_petro):
-    st.write(df)
     df_aux = df.copy()
     df_aux['Date'] = pd.to_datetime(df_aux['Date']).dt.date
     df_chart = df_raw_petro.merge(df_aux[['Date', 'y_pred']], on='Date', how='left')
