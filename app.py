@@ -102,6 +102,7 @@ def latest_news(df):
 
 
 def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
+    st.write(df.loc[df['date'] == date(2022, 2, 6)])
     df_count = df.copy()
     df_count['contador'] = 1
     df_count = df_count[['date', 'contador']].groupby('date').sum()
