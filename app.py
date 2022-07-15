@@ -169,6 +169,7 @@ def predict_model(df):
 
 
 def model_chart(df, df_raw_petro):
+    st.write(df)
     df_aux = df.copy()
     df_aux['Date'] = pd.to_datetime(df_aux['Date']).dt.date
     df_chart = df_raw_petro.merge(df_aux[['Date', 'y_pred']], on='Date', how='left')
