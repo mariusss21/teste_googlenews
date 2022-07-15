@@ -165,9 +165,35 @@ def predict_model(df):
     y_pred = ensemblevote.predict(X_test)
     X_test2['y_pred'] = y_pred
     ensemblevote.score(X_test, y_test)
-    st.write(ensemblevote.score(X_test, y_test))
-    st.write(y_pred)
-    st.write(X_test2)
+    return X_test2
+
+
+def model_chart(df, df_raw_petro):
+    df_chart = df_raw_petro.merge(df[['Date', 'y_pred']], on='Date', how='left')
+    df_chart.loc[df_chart['y_pred'] == 0] = -1
+    df_chart['y_pred'].fillna(0, inplace=True)
+
+    df_chart['colors'] = 'green' if df_chart['y_pred'] == 1 else 'red'
+    list_colors = list(df_chart)
+
+    fig = go.Figure(data=[go.Bar(x=df_raw_petro.Date,
+                        y=df_chart.y_pred,
+                        marker={'color': list_colors}
+                        )])
+    
+    fig.update_layout(
+		height=100,
+		margin=dict(b=5,	t=0,	l=0,	r=0),
+        font=dict(size=15),
+        xaxis_rangeslider_visible=False,
+        xaxis_visible=False)
+        #title_text='Quantidade de notícias coletadas por dia')
+    
+    #fig.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
+    #              marker_line_width=1.5, opacity=0.6)
+    st.plotly_chart(fig, use_container_width=True)
+
+
 
 
 def word_cloud(df_news):
@@ -275,7 +301,9 @@ def dashboard(data_inicial, data_final):
         if tipo_cotacao == 'Dia':
             st.subheader('Cotação dia')
             petro_chart(df_petr4)
-
+        
+        df_predict = predict_model(df_final)
+        model_chart(df_predict)
         qtd_news(df_raw_gnews_date, df_raw_petro_date)
         latest_news(df_raw_gnews)
 
