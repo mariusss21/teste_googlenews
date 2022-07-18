@@ -144,9 +144,9 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, df_news: pd.DataF
 
     st.subheader('Previsão para hoje')
     if previsao == 1:
-        st.write('Previsão pra hoje: :arrow_up_small:')
+        st.write('Previsão de alta hoje :arrow_up_small:')
     else:
-        st.write('Previsão pra hoje: :arrow_down_small')
+        st.write('Previsão de baixa hoje :arrow_down_small')
     
     today = datetime.now() - timedelta(hours=3)
     quantidade = df_news.loc[df_news['date'] == today.date()].shape[0]
