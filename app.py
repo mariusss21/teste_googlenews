@@ -49,6 +49,7 @@ def raw_petro() -> pd.DataFrame:
     query_job = client.query("SELECT * FROM `stack-minio.dts_stack_minio.raw_yfinance`")
     df = query_job.result().to_dataframe()
     df.Date = pd.to_datetime(df.Date).dt.date
+    df.drop_duplicates(inplace=True)
     return df
 
 
