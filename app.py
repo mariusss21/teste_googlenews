@@ -379,11 +379,15 @@ if __name__ == '__main__':
                     """)
 
     if pagina == 'Equipe MinIO':
+        
         st.title('Equipe MinIO')
+        col1, col2 = st.columns([2, 8])
 
-        st.subheader('Anderson Felipe')
-        st.write('Analista de dados')
-        st.write('LinkedIn: https://www.linkedin.com/in/anderson-miranda-a69248a2/')
+
+        col2.subheader('Anderson Felipe')
+        col2.write('Analista de dados')
+        col2.write('LinkedIn: https://www.linkedin.com/in/anderson-miranda-a69248a2/')
+        col1.image('anderson_miranda.jpeg', use_column_width=True)')
 
         st.subheader('Felipe Pereira')
         st.write('Engenheiro de dados')
