@@ -142,8 +142,10 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, df_news: pd.DataF
      delta=round(float(df_ibov.tail(1)['Adj Close'].item() - df_ibov.head(1)['Open'].item())* 100 /df_ibov.head(1)['Open'].item(), 2), 
      delta_color="normal")
 
-    st.subheader('Previsão para o dia')
-    st.write(previsao)
+    if previsao == 1:
+        st.write('Previsão pra hoje: :arrow_up_small:')
+    else:
+        st.write('Previsão pra hoje: :arrow_down_small')
     
     st.write('Aqui vai ficar a previsão')
     today = datetime.now() - timedelta(hours=3)
