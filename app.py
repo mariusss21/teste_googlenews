@@ -378,4 +378,25 @@ if __name__ == '__main__':
                     *{row['date']}* 
                     """)
 
-    
+    if pagina == 'Equipe MinIO':
+        st.title('Equipe MinIO')
+
+        st.subheader('Anderson Felipe')
+        st.write('Analista de dados')
+        st.write('LinkedIn: https://www.linkedin.com/in/anderson-miranda-a69248a2/')
+
+        st.subheader('Felipe Pereira')
+        st.write('Engenheiro de dados')
+        st.write('LinkedIn: ')
+
+        st.subheader('Lenon Borges')
+        st.write('Cientista de dados')
+        st.write('LinkedIn: https://www.linkedin.com/in/lenon-borges/')
+
+        st.subheader('Mario Carvalho')
+        st.write('Engenheiro de dados')
+        st.write('LinkedIn: https://www.linkedin.com/in/mario-carvalho-5a686aab/')
+        
+        st.subheader('Weber Godoi')
+        st.write('Cientista de dados e gerente de projetos')
+        st.write('LinkedIn: https://www.linkedin.com/in/webergodoi/')
