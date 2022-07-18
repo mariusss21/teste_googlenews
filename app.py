@@ -309,8 +309,7 @@ def dashboard(data_inicial, data_final):
     df_ibov.rename(columns={'Datetime': 'Date'}, inplace=True)
 
     df_predict = predict_model(df_final)
-    previsao = df_predict.loc[(df_predict['Date'].dt.date == date.today(), 'y_pred')]
-    st.write(previsao)
+    previsao = df_predict.loc[(df_predict['Date'].dt.date == date.today(), 'y_pred')].item()
 
     with col1:
         if tipo_cotacao == 'Histórica':
