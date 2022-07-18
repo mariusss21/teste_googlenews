@@ -323,8 +323,8 @@ def dashboard(data_inicial, data_final):
     with col2:
         live_values(df_petr4, df_ibov, df_raw_gnews, texto)
 
-    with col1:
-        predict_model(df_final)
+    # with col1:
+    #     predict_model(df_final)
 
 
 if __name__ == '__main__':
