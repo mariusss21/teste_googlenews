@@ -383,7 +383,6 @@ if __name__ == '__main__':
         st.title('Equipe MinIO')
         col1, col2 = st.columns([1, 9])
 
-
         col2.subheader('Anderson Felipe')
         col2.write('Analista de dados')
         col2.write('LinkedIn: https://www.linkedin.com/in/anderson-miranda-a69248a2/')
@@ -393,16 +392,19 @@ if __name__ == '__main__':
         st.write('Engenheiro de dados')
         st.write('LinkedIn: ')
 
+        col1, col2 = st.columns([1, 9])
         col2.subheader('Lenon Borges')
         col2.write('Cientista de dados')
         col2.write('LinkedIn: https://www.linkedin.com/in/lenon-borges/')
         col1.image('lenon_borges.jpg', use_column_width=True)
 
+        col1, col2 = st.columns([1, 9])
         col2.subheader('Mario Carvalho')
         col2.write('Engenheiro de dados')
         col2.write('LinkedIn: https://www.linkedin.com/in/mario-carvalho-5a686aab/')
         col1.image('mario_carvalho.jpg', use_column_width=True)
-    
+        
+        col1, col2 = st.columns([1, 9])
         col2.subheader('Weber Godoi')
         col2.write('Cientista de dados e gerente de projetos')
         col2.write('LinkedIn: https://www.linkedin.com/in/webergodoi/')
