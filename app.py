@@ -388,10 +388,6 @@ if __name__ == '__main__':
         col2.write('LinkedIn: https://www.linkedin.com/in/anderson-miranda-a69248a2/')
         col1.image('anderson_miranda.jpg', use_column_width=True)
 
-        st.subheader('Felipe Pereira')
-        st.write('Engenheiro de dados')
-        st.write('LinkedIn: ')
-
         col1, col2 = st.columns([1, 9])
         col2.subheader('Lenon Borges')
         col2.write('Cientista de dados')
@@ -409,3 +405,7 @@ if __name__ == '__main__':
         col2.write('Cientista de dados e gerente de projetos')
         col2.write('LinkedIn: https://www.linkedin.com/in/webergodoi/')
         col1.image('weber_godoi.jpg', use_column_width=True)
+
+        st.subheader('Felipe Pereira')
+        st.write('Engenheiro de dados')
+        st.write('LinkedIn: ')
