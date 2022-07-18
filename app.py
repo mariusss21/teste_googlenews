@@ -381,7 +381,7 @@ if __name__ == '__main__':
     if pagina == 'Equipe MinIO':
         
         st.title('Equipe MinIO')
-        col1, col2 = st.columns([2, 8])
+        col1, col2 = st.columns([1, 9])
 
 
         col2.subheader('Anderson Felipe')
