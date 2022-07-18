@@ -310,7 +310,7 @@ def dashboard(data_inicial, data_final):
 
     df_predict = predict_model(df_final)
     previsao = df_predict.loc[(df_predict['Date'] == date.today(), 'y_pred')]
-    st.write(previsao)
+    st.write(df_predict)
 
     with col1:
         if tipo_cotacao == 'Histórica':
