@@ -393,14 +393,17 @@ if __name__ == '__main__':
         st.write('Engenheiro de dados')
         st.write('LinkedIn: ')
 
-        st.subheader('Lenon Borges')
-        st.write('Cientista de dados')
-        st.write('LinkedIn: https://www.linkedin.com/in/lenon-borges/')
+        col2.subheader('Lenon Borges')
+        col2.write('Cientista de dados')
+        col2.write('LinkedIn: https://www.linkedin.com/in/lenon-borges/')
+        col1.image('lenon_borges.jpg', use_column_width=True)
 
-        st.subheader('Mario Carvalho')
-        st.write('Engenheiro de dados')
-        st.write('LinkedIn: https://www.linkedin.com/in/mario-carvalho-5a686aab/')
-        
-        st.subheader('Weber Godoi')
-        st.write('Cientista de dados e gerente de projetos')
-        st.write('LinkedIn: https://www.linkedin.com/in/webergodoi/')
+        col2.subheader('Mario Carvalho')
+        col2.write('Engenheiro de dados')
+        col2.write('LinkedIn: https://www.linkedin.com/in/mario-carvalho-5a686aab/')
+        col1.image('mario_carvalho.jpg', use_column_width=True)
+    
+        col2.subheader('Weber Godoi')
+        col2.write('Cientista de dados e gerente de projetos')
+        col2.write('LinkedIn: https://www.linkedin.com/in/webergodoi/')
+        col1.image('weber_godoi.jpg', use_column_width=True)
