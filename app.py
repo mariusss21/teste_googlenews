@@ -406,6 +406,7 @@ if __name__ == '__main__':
         col2.write('LinkedIn: https://www.linkedin.com/in/webergodoi/')
         col1.image('weber_godoi.jpg', use_column_width=True)
 
-        st.subheader('Felipe Pereira')
-        st.write('Engenheiro de dados')
-        st.write('LinkedIn: ')
+        col1, col2 = st.columns([1, 9])
+        col2.subheader('Felipe Pereira')
+        col2.write('Engenheiro de dados')
+        col2.write('LinkedIn: ')
