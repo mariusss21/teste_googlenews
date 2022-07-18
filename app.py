@@ -387,7 +387,7 @@ if __name__ == '__main__':
         col2.subheader('Anderson Felipe')
         col2.write('Analista de dados')
         col2.write('LinkedIn: https://www.linkedin.com/in/anderson-miranda-a69248a2/')
-        col1.image('anderson_miranda.jpeg', use_column_width=True)')
+        col1.image('anderson_miranda.jpeg', use_column_width=True)
 
         st.subheader('Felipe Pereira')
         st.write('Engenheiro de dados')
