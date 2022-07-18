@@ -129,7 +129,7 @@ def qtd_news(df: pd.DataFrame, df_raw_petro: pd.DataFrame):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, df_news: pd.DataFrame, dia: str):
+def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, df_news: pd.DataFrame, dia: str, previsao: int):
     st.subheader(f'Cotação {dia}')
 
     st.metric(label="PETR4",
@@ -143,6 +143,7 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, df_news: pd.DataF
      delta_color="normal")
 
     st.subheader('Previsão para o dia')
+    st.write(previsao)
     
     st.write('Aqui vai ficar a previsão')
     today = datetime.now() - timedelta(hours=3)
@@ -307,6 +308,9 @@ def dashboard(data_inicial, data_final):
     df_ibov.reset_index(inplace=True)
     df_ibov.rename(columns={'Datetime': 'Date'}, inplace=True)
 
+    df_predict = predict_model(df_final)
+    previsao = df_predict.loc[(df_predict['Date'] == date.today(), 'y_pred')].item()
+
     with col1:
         if tipo_cotacao == 'Histórica':
             st.subheader('Cotação histórica')
@@ -315,13 +319,13 @@ def dashboard(data_inicial, data_final):
             st.subheader('Cotação dia')
             petro_chart(df_petr4)
         
-        df_predict = predict_model(df_final)
+        
         model_chart(df_predict, df_raw_petro_date)
         qtd_news(df_raw_gnews_date, df_raw_petro_date)
         latest_news(df_raw_gnews)
 
     with col2:
-        live_values(df_petr4, df_ibov, df_raw_gnews, texto)
+        live_values(df_petr4, df_ibov, df_raw_gnews, texto, previsao)
 
     # with col1:
     #     predict_model(df_final)
