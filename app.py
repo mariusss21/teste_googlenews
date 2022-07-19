@@ -145,8 +145,10 @@ def live_values(df_petr4: pd.DataFrame, df_ibov: pd.DataFrame, df_news: pd.DataF
     st.subheader('Previsão para hoje')
     if previsao == 1:
         st.write('Previsão de alta hoje :arrow_up_small:')
-    else:
+    elif previsao == -1:
         st.write('Previsão de baixa hoje :arrow_down_small:')
+    else:
+        st.write('Não há previsão para hoje')
     
     today = datetime.now() - timedelta(hours=3)
     quantidade = df_news.loc[df_news['date'] == today.date()].shape[0]
@@ -311,7 +313,11 @@ def dashboard(data_inicial, data_final):
     df_ibov.rename(columns={'Datetime': 'Date'}, inplace=True)
 
     df_predict = predict_model(df_final)
-    previsao = df_predict.loc[(df_predict['Date'].dt.date == date.today(), 'y_pred')].item()
+    previsao = df_predict.loc[(df_predict['Date'].dt.date == date.today(), 'y_pred')]
+    if previsao.shape[0] == 1:
+        previsao = previsao.item()
+    else:
+        previsao = 0
 
     with col1:
         if tipo_cotacao == 'Histórica':
